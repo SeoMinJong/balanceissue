@@ -27,14 +27,14 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
             <div class="container">
-                <a calss="main-logo" href="index.html">
+                <a calss="main-logo" href="./home.html">
                     <img src="assets\img\portfolio\logo_color_change.png" width="30%" class="mx-0 mx-lg-1">
                 </a>
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="collapse navbar-collapse" id="navbarResponsive">    
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-0 px-2 rounded" style="font-size: 1.2rem;" href="./create.html">만들기</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-0 px-2 rounded" style="font-size: 1.2rem;" href="./about.html">문의</a></li>
@@ -43,16 +43,35 @@
             </div>
         </nav>
         <!-- Masthead-->
-        <header class="masthead bg-primary text-white text-center" style="padding-top: 18rem; padding-bottom: 12rem;">
+        <div class="masthead bg-primary text-white text-center" style="padding-top: 14rem; padding-bottom: 8rem;">
             <div class="play-box">
-                <div class="question-box box" style=" border:0.5rem solid red; float:left;">
+                <button class="question-box box" style=" border:0.5rem solid red; float:left;">
                     <div style="width: 100%; ">치킨 + 맥주</div>
-                </div>
-                <div class="question-box box" style="border:0.5rem solid blue; float:right;">
+                </button>
+                <button class="question-box box" style="border:0.5rem solid blue; float:right;">
                     <div style="width: 100%;">모둠전 + 막걸리</div>
+                </button>
+            </div>
+        </div>
+        <!-- Comment Section-->
+        <section class="page-section" id="Comment">
+            <div class="comment">
+                <!-- Comment Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Comment</h2>
+                <div align="center" id="form-commentInfo" >
+                    <div align="right" id="comment-count">댓글 <span id="count">0</span></div>
+                    <div class="comment-container"></div>
+                        <div>댓글 1</div>
+                        <div>댓글 2</div>
+                        <div>댓글 3</div>
+                    <input id="comment-input" placeholder="댓글을 입력해 주세요.">
+                    <button id="submit">등록</button>
+                </div>
+                <div id=comments>
+            
                 </div>
             </div>
-        </header>
+        </section>
         <!-- Footer-->
         <footer class="footer text-center">
             <!-- Footer About Text-->
