@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500&display=swap" rel="stylesheet">
+    <!-- css font-family: 'Noto Serif KR', serif; -->
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon:400" rel="stylesheet">
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="comment" class="comment">
+        <form id="comment_form" action="https://bellissue.com/comment_insert" method="post">
+            <svg class="bi bi-people-circle be-ava-comment icon_body" width="2rem" height="2rem" viewBox="0 0 16 16"
+                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                </path>
+                <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <input type="text" autocomplete="off" name="comment_body" class="comment_body form-control" maxlength="140"
+                id="comment_body" placeholder="댓글을 입력해주세요.">
+            <div id="submit_parent" class="d-flex justify-content-between">
+                <span id="comment_count" class="flex-grow-1">댓글: 8개</span>
+                <input type="password" class="form-control not_login_password" name="password" maxlength="20"
+                    placeholder="비밀번호">
+                <input type="button" name="submit" class="btn btn-dark comment_button" value="등록">
+            </div>
+            <input type="text" name="parent_id" value="0" style="display: none">
+        </form>
+        <button id="comment_load_button" class="btn btn-outline-primary" style="display: none;">댓글 보기</button>
+        <div id="comment_container">
+            <div class="collapse comment-child" id="childundefined">
+                <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
+                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
+                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                        </path>
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <input type="text" autocomplete="off" name="comment_body" maxlength="140"
+                        class="comment_body form-control" id="comment_body" placeholder="댓글을 입력해주세요.">
+                    <div id="submit_parent" class="text-right d-flex justify-content-end">
+                        <input type="password" class="form-control not_login_password" name="password" maxlength="20"
+                            placeholder="비밀번호">
+                        <input type="button" name="submit" class="btn btn-dark comment_button" value="등록">
+                    </div>
+                    <input type="text" name="parent_id" value="undefined" style="display: none">
+                </form>
+            </div>
+            <div class="be-comment">
+                <svg class="bi bi-people-circle be-ava-comment icon_body1" width="1em" height="1em" viewBox="0 0 16 16"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                    </path>
+                    <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                    <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div class="be-comment-content">
+                    <span class="d-flex be-comment-name">
+                        <strong class="flex-grow-1">익명</strong>
+
+                        <svg class="bi bi-x-square not_comment_delete" data-comment_id="46059" style="cursor:pointer"
+                            width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M14 1H2a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V2a1 1 0 00-1-1zM2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2z"
+                                clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd"
+                                d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                                clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd"
+                                d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+
+                    </span>
+                    <p class="be-comment-text">
+                        밸붕이야
+                    </p>
+                </div>
+                <div class="sub no-drag" id="sub46059">
+                    <strong>2년 전</strong>
+                    <svg class="bi bi-heart like_button" data-comment_id="46059" style="cursor:pointer" width="1em"
+                        height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 01.176-.17C12.72-3.042 23.333 4.867 8 15z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <strong class="like_count">1</strong>
+                    <strong style="cursor:pointer" data-toggle="collapse" data-target="#child46059"
+                        aria-expanded="false" aria-controls="child46059" class="">답글 달기</strong>
+                    <strong class="comment_door no-drag" style="cursor:pointer" data-toggle="collapse"
+                        data-target=".comment_child46059" aria-expanded="false"
+                        aria-controls="comment_child46059">접기</strong>
+                </div>
+            </div>
+            <div class="collapse comment-child" id="child46059">
+                <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
+                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
+                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                        </path>
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <input type="text" autocomplete="off" name="comment_body" maxlength="140"
+                        class="comment_body form-control" id="comment_body" placeholder="댓글을 입력해주세요.">
+                    <div id="submit_parent" class="text-right d-flex justify-content-end">
+                        <input type="password" class="form-control not_login_password" name="password" maxlength="20"
+                            placeholder="비밀번호">
+                        <input type="button" name="submit" class="btn btn-dark comment_button" value="등록">
+                    </div>
+                    <input type="text" name="parent_id" value="46059" style="display: none">
+                </form>
+            </div>
+            <div class="be-comment">
+                <svg class="bi bi-people-circle be-ava-comment icon_body1" width="1em" height="1em" viewBox="0 0 16 16"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                    </path>
+                    <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                    <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div class="be-comment-content">
+                    <span class="d-flex be-comment-name">
+                        <strong class="flex-grow-1">익명</strong>
+
+                        <svg class="bi bi-x-square not_comment_delete" data-comment_id="61954" style="cursor:pointer"
+                            width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M14 1H2a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V2a1 1 0 00-1-1zM2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2z"
+                                clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd"
+                                d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                                clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd"
+                                d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+
+                    </span>
+                    <p class="be-comment-text">
+                        전자는 리스크가 너무 큼
+                    </p>
+                </div>
+                <div class="sub no-drag" id="sub61954">
+                    <strong>2년 전</strong>
+                    <svg class="bi bi-heart like_button" data-comment_id="61954" style="cursor:pointer" width="1em"
+                        height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 01.176-.17C12.72-3.042 23.333 4.867 8 15z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <strong class="like_count">1</strong>
+                    <strong style="cursor:pointer" data-toggle="collapse" data-target="#child61954"
+                        aria-expanded="false" aria-controls="child61954" class="">답글 달기</strong>
+                    <strong class="comment_door no-drag" style="cursor:pointer" data-toggle="collapse"
+                        data-target=".comment_child61954" aria-expanded="false"
+                        aria-controls="comment_child61954">접기</strong>
+                </div>
+            </div>
+            <div class="collapse comment-child" id="child61954">
+                <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
+                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
+                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                        </path>
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <input type="text" autocomplete="off" name="comment_body" maxlength="140"
+                        class="comment_body form-control" id="comment_body" placeholder="댓글을 입력해주세요.">
+                    <div id="submit_parent" class="text-right d-flex justify-content-end">
+                        <input type="password" class="form-control not_login_password" name="password" maxlength="20"
+                            placeholder="비밀번호">
+                        <input type="button" name="submit" class="btn btn-dark comment_button" value="등록">
+                    </div>
+                    <input type="text" name="parent_id" value="61954" style="display: none">
+                </form>
+            </div>
+            <div class="be-comment">
+                <svg class="bi bi-people-circle be-ava-comment icon_body1" width="1em" height="1em" viewBox="0 0 16 16"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                    </path>
+                    <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                    <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div class="be-comment-content">
+                    <span class="d-flex be-comment-name">
+                        <strong class="flex-grow-1">루리루리</strong>
+
+                    </span>
+                    <p class="be-comment-text">
+                        3:그냥 나로 사는 능력
+                    </p>
+                </div>
+                <div class="sub no-drag" id="sub69813">
+                    <strong>1년 전</strong>
+                    <svg class="bi bi-heart like_button" data-comment_id="69813" style="cursor:pointer" width="1em"
+                        height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 01.176-.17C12.72-3.042 23.333 4.867 8 15z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <strong class="like_count">1</strong>
+                    <strong style="cursor:pointer" data-toggle="collapse" data-target="#child69813"
+                        aria-expanded="false" aria-controls="child69813" class="">답글 달기</strong>
+                    <strong class="comment_door no-drag" style="cursor:pointer" data-toggle="collapse"
+                        data-target=".comment_child69813" aria-expanded="false"
+                        aria-controls="comment_child69813">접기</strong>
+                </div>
+            </div>
+            <div class="collapse comment-child" id="child69813">
+                <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
+                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
+                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                        </path>
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <input type="text" autocomplete="off" name="comment_body" maxlength="140"
+                        class="comment_body form-control" id="comment_body" placeholder="댓글을 입력해주세요.">
+                    <div id="submit_parent" class="text-right d-flex justify-content-end">
+                        <input type="password" class="form-control not_login_password" name="password" maxlength="20"
+                            placeholder="비밀번호">
+                        <input type="button" name="submit" class="btn btn-dark comment_button" value="등록">
+                    </div>
+                    <input type="text" name="parent_id" value="69813" style="display: none">
+                </form>
+            </div>
+            <div class="be-comment">
+                <svg class="bi bi-people-circle be-ava-comment icon_body1" width="1em" height="1em" viewBox="0 0 16 16"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                    </path>
+                    <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                    <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div class="be-comment-content">
+                    <span class="d-flex be-comment-name">
+                        <strong class="flex-grow-1">Jyi</strong>
+
+                    </span>
+                    <p class="be-comment-text">
+                        그냥 지금상태 유지할래...
+                    </p>
+                </div>
+                <div class="sub no-drag" id="sub44233">
+                    <strong>2년 전</strong>
+                    <svg class="bi bi-heart like_button" data-comment_id="44233" style="cursor:pointer" width="1em"
+                        height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 01.176-.17C12.72-3.042 23.333 4.867 8 15z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <strong class="like_count">0</strong>
+                    <strong style="cursor:pointer" data-toggle="collapse" data-target="#child44233"
+                        aria-expanded="false" aria-controls="child44233" class="">답글 달기</strong>
+                    <strong class="comment_door no-drag" style="cursor:pointer" data-toggle="collapse"
+                        data-target=".comment_child44233" aria-expanded="false"
+                        aria-controls="comment_child44233">접기</strong>
+                </div>
+            </div>
+            <div class="collapse comment-child" id="child44233">
+                <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
+                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
+                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                        </path>
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <input type="text" autocomplete="off" name="comment_body" maxlength="140"
+                        class="comment_body form-control" id="comment_body" placeholder="댓글을 입력해주세요.">
+                    <div id="submit_parent" class="text-right d-flex justify-content-end">
+                        <input type="password" class="form-control not_login_password" name="password" maxlength="20"
+                            placeholder="비밀번호">
+                        <input type="button" name="submit" class="btn btn-dark comment_button" value="등록">
+                    </div>
+                    <input type="text" name="parent_id" value="44233" style="display: none">
+                </form>
+            </div>
+            <div class="be-comment">
+                <svg class="bi bi-people-circle be-ava-comment icon_body1" width="1em" height="1em" viewBox="0 0 16 16"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                    </path>
+                    <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                    <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div class="be-comment-content">
+                    <span class="d-flex be-comment-name">
+                        <strong class="flex-grow-1">아리스</strong>
+
+                    </span>
+                    <p class="be-comment-text">
+                        수능을 본다하면 거의 1시간정도 걸리니까... 몇개만 맞고 몇개는 틀리고??!! 그러면 상위 10만 똑똑해지는게 낮지않을까??
+                    </p>
+                </div>
+                <div class="sub no-drag" id="sub44608">
+                    <strong>2년 전</strong>
+                    <svg class="bi bi-heart like_button" data-comment_id="44608" style="cursor:pointer" width="1em"
+                        height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 01.176-.17C12.72-3.042 23.333 4.867 8 15z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <strong class="like_count">0</strong>
+                    <strong style="cursor:pointer" data-toggle="collapse" data-target="#child44608"
+                        aria-expanded="false" aria-controls="child44608" class="">답글 달기</strong>
+                    <strong class="comment_door no-drag" style="cursor:pointer" data-toggle="collapse"
+                        data-target=".comment_child44608" aria-expanded="false"
+                        aria-controls="comment_child44608">접기</strong>
+                </div>
+            </div>
+            <div class="collapse comment-child" id="child44608">
+                <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
+                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
+                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                        </path>
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <input type="text" autocomplete="off" name="comment_body" maxlength="140"
+                        class="comment_body form-control" id="comment_body" placeholder="댓글을 입력해주세요.">
+                    <div id="submit_parent" class="text-right d-flex justify-content-end">
+                        <input type="password" class="form-control not_login_password" name="password" maxlength="20"
+                            placeholder="비밀번호">
+                        <input type="button" name="submit" class="btn btn-dark comment_button" value="등록">
+                    </div>
+                    <input type="text" name="parent_id" value="44608" style="display: none">
+                </form>
+            </div>
+            <div class="be-comment">
+                <svg class="bi bi-people-circle be-ava-comment icon_body1" width="1em" height="1em" viewBox="0 0 16 16"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                    </path>
+                    <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                    <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div class="be-comment-content">
+                    <span class="d-flex be-comment-name">
+                        <strong class="flex-grow-1">익명</strong>
+
+                        <svg class="bi bi-x-square not_comment_delete" data-comment_id="55858" style="cursor:pointer"
+                            width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M14 1H2a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V2a1 1 0 00-1-1zM2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2z"
+                                clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd"
+                                d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                                clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd"
+                                d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+
+                    </span>
+                    <p class="be-comment-text">
+                        세계에서 상위10프로니까 사기아님 그러면 천재로 살고 수능도 잘보고 비트코인으로 부자각
+                    </p>
+                </div>
+                <div class="sub no-drag" id="sub55858">
+                    <strong>2년 전</strong>
+                    <svg class="bi bi-heart like_button" data-comment_id="55858" style="cursor:pointer" width="1em"
+                        height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 01.176-.17C12.72-3.042 23.333 4.867 8 15z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <strong class="like_count">0</strong>
+                    <strong style="cursor:pointer" data-toggle="collapse" data-target="#child55858"
+                        aria-expanded="false" aria-controls="child55858" class="">답글 달기</strong>
+                    <strong class="comment_door no-drag" style="cursor:pointer" data-toggle="collapse"
+                        data-target=".comment_child55858" aria-expanded="false"
+                        aria-controls="comment_child55858">접기</strong>
+                </div>
+            </div>
+            <div class="collapse comment-child" id="child55858">
+                <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
+                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
+                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                        </path>
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <input type="text" autocomplete="off" name="comment_body" maxlength="140"
+                        class="comment_body form-control" id="comment_body" placeholder="댓글을 입력해주세요.">
+                    <div id="submit_parent" class="text-right d-flex justify-content-end">
+                        <input type="password" class="form-control not_login_password" name="password" maxlength="20"
+                            placeholder="비밀번호">
+                        <input type="button" name="submit" class="btn btn-dark comment_button" value="등록">
+                    </div>
+                    <input type="text" name="parent_id" value="55858" style="display: none">
+                </form>
+            </div>
+            <div class="be-comment">
+                <svg class="bi bi-people-circle be-ava-comment icon_body1" width="1em" height="1em" viewBox="0 0 16 16"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                    </path>
+                    <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                    <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div class="be-comment-content">
+                    <span class="d-flex be-comment-name">
+                        <strong class="flex-grow-1">익명</strong>
+
+                        <svg class="bi bi-x-square not_comment_delete" data-comment_id="63628" style="cursor:pointer"
+                            width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M14 1H2a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V2a1 1 0 00-1-1zM2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2z"
+                                clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd"
+                                d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                                clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd"
+                                d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+
+                    </span>
+                    <p class="be-comment-text">
+                        밸붕인데? 전자는 지능이 원숭이급으로 떨어지면 과연 나 라는 자아도 유지가 가능할까?
+                    </p>
+                </div>
+                <div class="sub no-drag" id="sub63628">
+                    <strong>2년 전</strong>
+                    <svg class="bi bi-heart like_button" data-comment_id="63628" style="cursor:pointer" width="1em"
+                        height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 01.176-.17C12.72-3.042 23.333 4.867 8 15z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <strong class="like_count">0</strong>
+                    <strong style="cursor:pointer" data-toggle="collapse" data-target="#child63628"
+                        aria-expanded="false" aria-controls="child63628" class="">답글 달기</strong>
+                    <strong class="comment_door no-drag" style="cursor:pointer" data-toggle="collapse"
+                        data-target=".comment_child63628" aria-expanded="false"
+                        aria-controls="comment_child63628">접기</strong>
+                </div>
+            </div>
+            <div class="collapse comment-child" id="child63628">
+                <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
+                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
+                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                        </path>
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <input type="text" autocomplete="off" name="comment_body" maxlength="140"
+                        class="comment_body form-control" id="comment_body" placeholder="댓글을 입력해주세요.">
+                    <div id="submit_parent" class="text-right d-flex justify-content-end">
+                        <input type="password" class="form-control not_login_password" name="password" maxlength="20"
+                            placeholder="비밀번호">
+                        <input type="button" name="submit" class="btn btn-dark comment_button" value="등록">
+                    </div>
+                    <input type="text" name="parent_id" value="63628" style="display: none">
+                </form>
+            </div>
+            <div class="be-comment">
+                <svg class="bi bi-people-circle be-ava-comment icon_body1" width="1em" height="1em" viewBox="0 0 16 16"
+                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                    </path>
+                    <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                    <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div class="be-comment-content">
+                    <span class="d-flex be-comment-name">
+                        <strong class="flex-grow-1">익명</strong>
+
+                        <svg class="bi bi-x-square not_comment_delete" data-comment_id="64519" style="cursor:pointer"
+                            width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M14 1H2a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V2a1 1 0 00-1-1zM2 0a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V2a2 2 0 00-2-2H2z"
+                                clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd"
+                                d="M11.854 4.146a.5.5 0 010 .708l-7 7a.5.5 0 01-.708-.708l7-7a.5.5 0 01.708 0z"
+                                clip-rule="evenodd"></path>
+                            <path fill-rule="evenodd"
+                                d="M4.146 4.146a.5.5 0 000 .708l7 7a.5.5 0 00.708-.708l-7-7a.5.5 0 00-.708 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+
+                    </span>
+                    <p class="be-comment-text">
+                        압도
+                    </p>
+                </div>
+                <div class="sub no-drag" id="sub64519">
+                    <strong>2년 전</strong>
+                    <svg class="bi bi-heart like_button" data-comment_id="64519" style="cursor:pointer" width="1em"
+                        height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 01.176-.17C12.72-3.042 23.333 4.867 8 15z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <strong class="like_count">0</strong>
+                    <strong style="cursor:pointer" data-toggle="collapse" data-target="#child64519"
+                        aria-expanded="false" aria-controls="child64519" class="">답글 달기</strong>
+                    <strong class="comment_door no-drag" style="cursor:pointer" data-toggle="collapse"
+                        data-target=".comment_child64519" aria-expanded="false"
+                        aria-controls="comment_child64519">접기</strong>
+                </div>
+            </div>
+            <div class="collapse comment-child" id="child64519">
+                <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
+                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
+                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
+                        </path>
+                        <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <input type="text" autocomplete="off" name="comment_body" maxlength="140"
+                        class="comment_body form-control" id="comment_body" placeholder="댓글을 입력해주세요.">
+                    <div id="submit_parent" class="text-right d-flex justify-content-end">
+                        <input type="password" class="form-control not_login_password" name="password" maxlength="20"
+                            placeholder="비밀번호">
+                        <input type="button" name="submit" class="btn btn-dark comment_button" value="등록">
+                    </div>
+                    <input type="text" name="parent_id" value="64519" style="display: none">
+                </form>
+            </div>
+        </div>
+        <button id="comment_more" class="btn btn-outline-primary" style="display: none;">더보기</button>
+    </div>
+</body>
+
+</html>
