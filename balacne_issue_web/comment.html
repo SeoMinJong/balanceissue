@@ -25,31 +25,19 @@
 <body>
     <div id="comment" class="comment">
         <form id="comment_form" action="https://bellissue.com/comment_insert" method="post">
-            <svg class="bi bi-people-circle be-ava-comment icon_body" width="2rem" height="2rem" viewBox="0 0 16 16"
-                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
-                </path>
-                <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
-                <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
-                    clip-rule="evenodd"></path>
-            </svg>
-            <input type="text" autocomplete="off" name="comment_body" class="comment_body form-control" maxlength="140"
+            <input type="text" autocomplete="off" name="comment_body" class="comment-body form-control px-3" maxlength="140"
                 id="comment_body" placeholder="댓글을 입력해주세요.">
-            <div id="submit_parent" class="d-flex justify-content-between">
-                <span id="comment_count" class="flex-grow-1">댓글: 8개</span>
-                <input type="password" class="form-control not_login_password" name="password" maxlength="20"
+            <div id="submit_parent" class="justify-content-between py-2" style="display: flex;">
+                <input type="password" class="form-control not_login_password comment-pass px-3" style="width: 16%; float:left;"name="password" maxlength="20"
                     placeholder="비밀번호">
-                <input type="button" name="submit" class="btn btn-dark comment_button" value="등록">
+                <input type="button" name="submit" class="btn btn-dark comment_button" style="float:left;" value="등록">
             </div>
             <input type="text" name="parent_id" value="0" style="display: none">
         </form>
-        <button id="comment_load_button" class="btn btn-outline-primary" style="display: none;">댓글 보기</button>
+        <div id="comment_count">댓글: 8개</div>
         <div id="comment_container">
             <div class="collapse comment-child" id="childundefined">
                 <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
-                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
-                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
                         </path>
@@ -118,8 +106,6 @@
             </div>
             <div class="collapse comment-child" id="child46059">
                 <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
-                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
-                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
                         </path>
@@ -188,8 +174,6 @@
             </div>
             <div class="collapse comment-child" id="child61954">
                 <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
-                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
-                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
                         </path>
@@ -244,8 +228,6 @@
             </div>
             <div class="collapse comment-child" id="child69813">
                 <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
-                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
-                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
                         </path>
@@ -300,8 +282,6 @@
             </div>
             <div class="collapse comment-child" id="child44233">
                 <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
-                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
-                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
                         </path>
@@ -356,8 +336,6 @@
             </div>
             <div class="collapse comment-child" id="child44608">
                 <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
-                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
-                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
                         </path>
@@ -426,8 +404,6 @@
             </div>
             <div class="collapse comment-child" id="child55858">
                 <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
-                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
-                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
                         </path>
@@ -496,8 +472,6 @@
             </div>
             <div class="collapse comment-child" id="child63628">
                 <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
-                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
-                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
                         </path>
@@ -566,15 +540,6 @@
             </div>
             <div class="collapse comment-child" id="child64519">
                 <form id="comment_form" action="https://bellruns.com/comment_insert" method="post">
-                    <svg class="bi bi-people-circle be-ava-comment icon_bodyundefined" width="1em" height="1em"
-                        viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 008 15a6.987 6.987 0 005.468-2.63z">
-                        </path>
-                        <path fill-rule="evenodd" d="M8 9a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
-                        <path fill-rule="evenodd" d="M8 1a7 7 0 100 14A7 7 0 008 1zM0 8a8 8 0 1116 0A8 8 0 010 8z"
-                            clip-rule="evenodd"></path>
-                    </svg>
                     <input type="text" autocomplete="off" name="comment_body" maxlength="140"
                         class="comment_body form-control" id="comment_body" placeholder="댓글을 입력해주세요.">
                     <div id="submit_parent" class="text-right d-flex justify-content-end">

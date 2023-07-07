@@ -10832,7 +10832,7 @@ html {
 }
 
 .page-section {
-  padding: 6rem 0;
+  padding: 3rem 0;
 }
 .page-section .page-section-heading {
   font-size: 2.25rem;
@@ -11088,5 +11088,12 @@ html {
 }
 
 .comment {
-  padding: 1rem;
+  padding-left: 11%;
+  padding-right: 11%;
+  padding-top: 2%;
+}
+
+.comment-pass {
+  padding-right: 1rem;
+  margin-right: 50%;
 }
