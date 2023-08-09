@@ -1,54 +1,53 @@
-/*!
-* Start Bootstrap - Freelancer v7.0.7 (https://startbootstrap.com/theme/freelancer)
-* Copyright 2013-2023 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-freelancer/blob/master/LICENSE)
-*/
-//
-// Scripts
-// 
+// 버튼에 대한 조작
+let select_type = ""; // 선택된 버튼의 정보를 저장할 변수
 
-window.addEventListener('DOMContentLoaded', event => {
+document.getElementById("friend-btn").addEventListener("click", function() {
+    select_type = "friend";
+    document.getElementById("friend-btn").style.backgroundColor = "green";
+    document.getElementById("friend-btn").style.color = "black";
+    document.getElementById("family-btn").style.backgroundColor = "";
+    document.getElementById("family-btn").style.color = "yellow";
+    document.getElementById("lover-btn").style.backgroundColor = "";
+    document.getElementById("lover-btn").style.color = "Aqua";
+    console.log("select friend! change green!")
+});
 
-    // Navbar shrink function
-    var navbarShrink = function () {
-        const navbarCollapsible = document.body.querySelector('#mainNav');
-        if (!navbarCollapsible) {
-            return;
-        }
-        if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
-        } else {
-            navbarCollapsible.classList.add('navbar-shrink')
-        }
+document.getElementById("family-btn").addEventListener("click", function() {
+    select_type = "family";
+    document.getElementById("friend-btn").style.backgroundColor = "";
+    document.getElementById("friend-btn").style.color = "green";
+    document.getElementById("family-btn").style.backgroundColor = "yellow";
+    document.getElementById("family-btn").style.color = "black";
+    document.getElementById("lover-btn").style.backgroundColor = "";
+    document.getElementById("lover-btn").style.color = "Aqua";
+    console.log("select family! change yellow!")
+});
 
-    };
+document.getElementById("lover-btn").addEventListener("click", function() {
+    select_type = "lover";
+    document.getElementById("friend-btn").style.backgroundColor = "";
+    document.getElementById("friend-btn").style.color = "green";
+    document.getElementById("family-btn").style.backgroundColor = "";
+    document.getElementById("family-btn").style.color = "yellow";
+    document.getElementById("lover-btn").style.backgroundColor = "Aqua";
+    document.getElementById("lover-btn").style.color = "black";
+    console.log("select lover! change blue!")
+});
 
-    // Shrink the navbar 
-    navbarShrink();
 
-    // Shrink the navbar when page is scrolled
-    document.addEventListener('scroll', navbarShrink);
+let select_19 = 0
 
-    // Activate Bootstrap scrollspy on the main nav element
-    const mainNav = document.body.querySelector('#mainNav');
-    if (mainNav) {
-        new bootstrap.ScrollSpy(document.body, {
-            target: '#mainNav',
-            rootMargin: '0px 0px -40%',
-        });
-    };
-
-    // Collapse responsive navbar when toggler is visible
-    const navbarToggler = document.body.querySelector('.navbar-toggler');
-    const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarResponsive .nav-link')
-    );
-    responsiveNavItems.map(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
-            }
-        });
-    });
-
+document.getElementById("19-btn").addEventListener("click", function() {
+    if (document.getElementById("19-btn").innerText == "19 OFF"){
+        select_19 = 1
+        document.getElementById("19-btn").innerText = "19 ON"
+        document.getElementById("19-btn").style.backgroundColor = "red";
+        console.log("19금 태그가 선택되었습니다. 현재 상태 :",select_19)
+    }
+    else{
+        select_19 = 0
+        document.getElementById("19-btn").innerText = "19 OFF"
+        document.getElementById("19-btn").style.backgroundColor = "";
+        console.log("19금 태그가 미선택되었습니다. 현재 상태 :",select_19)
+    }
 });

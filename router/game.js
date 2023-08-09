@@ -4,65 +4,20 @@ const router = express.Router();
 const path = require('path');
 const fs = require('fs');
 
+router.use(express.static('public'));
+
 const template_f = require('../lib/template.js');
 
 router.get('/', (req, res) => {
-    var title = 'Balance Issue Game';
-
-    // 유동적인 파일 
-    var template = template_f.base_html(title,
-        `
-        <!-- Masthead-->
-        <main class="masthead bg-primary text-white text-center" style="padding-top: 18rem; padding-bottom: 12rem;">
-            <div class="container d-flex align-items-center flex-column">
-                <a href="./play.html">
-                    <button type="button" class="btn btn-outline-dark" style="font-size: 3rem;">PLAY!</button>
-                </a>
-                
-                <!-- Icon Divider-->
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-                <!-- Masthead Subheading-->
-                    <div>
-                        <button type="checkbox" class="btn btn-outline-success home-button home-button"autocomplete="off">친구</button>
-                        <button type="checkbox" class="btn btn-outline-warning home-button home-button"autocomplete="off">가족</button>
-                        <button type="checkbox" class="btn btn-outline-info home-button home-button"autocomplete="off">연인</button>
-                        <!-- <button type="checkbox" class="btn btn-outline-danger home-button"autocomplete="off">19+</button> -->
-                    </div>
-
-                    <div style="padding: 2rem;">
-                        <button type="button" class="btn btn-danger home-button">19 ON</button>
-                        <!-- on/off btn btn-danger -->
-                    </div>
-            </div>
-        </main>
-        `);
-    
-    res.send(template);
+    var dirPath = path.join(__dirname, '../views/home.html');
+    res.sendFile(dirPath);
 })
 
-router.get('/create',function(req,res){
-    console.log('start create topic')
-    var title = 'WEB - CREATE';
-
-    // 유동적인 파일 
-    var _list = template_f.list(req.list);
-    var template = template_f.html(title, _list, `
-    <form action="/topic/create_process" method="post">
-    <p><input type="text" name="title" placeholder="title"></p>
-    <p>
-        <textarea name="description" placeholder="description"></textarea>
-    </p>
-    <p>
-        <input type="submit">
-    </p>
-    </form>`,
-    '');
-    
-    res.send(template);
+router.get('/play',function(req,res){
+    // req에서 하나 이상의 선택값을 넘겨받아서 해당 선택값에 해당하는 질문들이 나올 수 있도록 해야함
+    // 선택값에 대한 DB 데이터 값 받기
+    var dirPath = path.join(__dirname, '../views/play.html');
+    res.sendFile(dirPath);
 })
 
 router.post('/create_process', function(req, res){
