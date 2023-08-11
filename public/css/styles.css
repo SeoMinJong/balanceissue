@@ -8126,9 +8126,14 @@ textarea.form-control-lg {
   --bs-text-opacity: 1;
 }
 
+.bg-play {
+  background-color: #9b59b6;
+}
+
 .bg-primary {
   --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+  /* 메인 색 */
+  background-color: #1ABC9C;
 }
 
 .bg-secondary {
@@ -11096,4 +11101,15 @@ html {
 .comment-pass {
   padding-right: 1rem;
   margin-right: 50%;
+}
+
+#explan-box {
+  background-color: #F0f0f0;
+  color: #000000;
+  padding: 1rem;
+  font-size: 1.2rem;
+  border-top: 0.5rem solid #95a5a6;
+  border-left: 0.5rem solid #95a5a6;
+  border-right: 0.5rem solid #95a5a6;
+  border-radius: 0.5rem 0.5rem 0 0;
 }

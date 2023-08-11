@@ -51,3 +51,6 @@ document.getElementById("19-btn").addEventListener("click", function() {
         console.log("19금 태그가 미선택되었습니다. 현재 상태 :",select_19)
     }
 });
+
+
+// play-btn에 대한 tag 조건에 따른 난수 추출 및 난수에 해당하는 play 페이지
