@@ -10975,8 +10975,8 @@ html {
 
 .masthead {
   display: flex;
-  padding-top: calc(6rem + 74px);
-  padding-bottom: 6rem;
+  padding-top: calc(5rem + 74px);
+  padding-bottom: 5rem;
 }
 .masthead .masthead-heading {
   font-size: 2.75rem;
@@ -11090,6 +11090,7 @@ html {
   width:30rem; 
   height:20rem;
   font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .comment {
@@ -11104,12 +11105,13 @@ html {
 }
 
 #explan-box {
-  background-color: #F0f0f0;
+  background-color: #FFFFFF;
   color: #000000;
   padding: 1rem;
   font-size: 1.2rem;
-  border-top: 0.5rem solid #95a5a6;
+  font-weight: bold;
+  /* border-top: 0.5rem solid #95a5a6;
   border-left: 0.5rem solid #95a5a6;
   border-right: 0.5rem solid #95a5a6;
-  border-radius: 0.5rem 0.5rem 0 0;
+  border-radius: 0.5rem 0.5rem 0 0; */
 }
