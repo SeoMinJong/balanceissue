@@ -13,32 +13,21 @@ router.get('/', (req, res) => {
     res.sendFile(dirPath);
 })
 
-router.get('/play',function(req,res){
+router.get('/play',function(req,res){ ///:GM_ID
     // req에서 하나 이상의 선택값을 넘겨받아서 해당 선택값에 해당하는 질문들이 나올 수 있도록 해야함
     // 선택값에 대한 DB 데이터 값 받기
     var dirPath = path.join(__dirname, '../views/play.html');
     res.sendFile(dirPath);
 })
 
+router.get('/create',function(req,res){
+    // req에서 하나 이상의 선택값을 넘겨받아서 해당 선택값에 해당하는 질문들이 나올 수 있도록 해야함
+    // 선택값에 대한 DB 데이터 값 받기
+    var dirPath = path.join(__dirname, '../views/create.html');
+    res.sendFile(dirPath);
+})
+
 router.post('/create_process', function(req, res){
-    /*
-    var body='';
-    req.on('data', function(data){
-        body = body + data;
-        console.log('body : '+body);
-    });
-    req.on('end', function(){
-        var post = qs.parse(body);
-        var title = post.title;
-        var description = post.description;
-        
-        fs.writeFile(`data/${title}`, description, 'utf-8',
-        function(err){
-            res.writeHead(302, {Location: `/page/${title}`});
-            res.end('success');
-        })
-    });
-    */
     var post = req.body;
     var title = post.title;
     var description = post.description;
