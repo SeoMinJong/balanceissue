@@ -1,23 +1,61 @@
 const sanitizeHtml = require('sanitize-html');
+var bodyParser = require('body-parser');
 const express = require('express');
 const router = express.Router();
+const mysql = require('mysql');
 const path = require('path');
 const fs = require('fs');
+
+require('dotenv').config();
+
+const client = mysql.createConnection({
+    host     : process.env.host,
+    user     : process.env.user,
+    password : process.env.password,
+    database : process.env.database
+});
+
+
+client.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
 
 router.use(express.static('public'));
 
 const template_f = require('../lib/template.js');
 
+
+router.post('/api/get_gm_data/', (req, res) => {
+    var post = req.body;
+    console.log('post :',post);
+    var gm_type = post.select_type;
+    var gm_19_type = post.select_19;
+    // var gm_type = path.parse(post.gm_type).base;
+    // var gm_19_type = path.parse(post.gm_19_type).base;
+    console.log('gm_type, gm_19_type :',gm_type,gm_19_type);
+    const query = `SELECT IDX FROM GM_TYPE WHERE type = ${gm_type} AND ${gm_19_type}`; // SQL 쿼리. ? 문자열을 통해 동적으로 값을 입력
+    
+    // client.query(query, (error, results, fields) => {
+    //     if (error) throw error;
+    //     // 쿼리 실행 결과(error) 처리 코드 작성
+
+    //     const gm_data = results[0]; // 결과 데이터가 존재한다면, 첫번째 행(row)의 데이터 값을 가져옴.
+    //     console.log(gm_data)
+
+    //     // 
+    // });
+});
+
 router.get('/', (req, res) => {
     var dirPath = path.join(__dirname, '../views/home.html');
-    res.sendFile(dirPath);
+    res.render(dirPath);
 })
 
-router.get('/play',function(req,res){ ///:GM_ID
-    // req에서 하나 이상의 선택값을 넘겨받아서 해당 선택값에 해당하는 질문들이 나올 수 있도록 해야함
-    // 선택값에 대한 DB 데이터 값 받기
+
+router.get('/play/:Index',function(req,res){
     var dirPath = path.join(__dirname, '../views/play.html');
-    res.sendFile(dirPath);
+    res.render(dirPath);
 })
 
 router.get('/create',function(req,res){
