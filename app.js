@@ -1,6 +1,7 @@
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const express = require('express');
+const path = require('path');
 const fs = require('fs');
 
 const template_f = require('./lib/template.js');
@@ -11,6 +12,9 @@ const port = 3000
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression())
+
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
 
 app.use('/game', gameRouter);
 
