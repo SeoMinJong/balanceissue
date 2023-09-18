@@ -68,8 +68,8 @@ document.getElementById("play-btn").addEventListener("click", function() {
     })
     .then(response => response.json())
     .then(data => {
-         console.log(data)
+        console.log('/game/play/' + data.index)
         // 서버로부터 받은 데이터를 처리하는 코드
-        location.href = `/game/play/${data.index}`;
+        window.location.href = `/game/play/${data.index}/?qa=${data.qa}&qb=${data.qb}&exp=${data.exp}`;
     });
 });

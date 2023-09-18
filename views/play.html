@@ -21,7 +21,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Do+Hyeon:400" rel="stylesheet">
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
     </head>
 
     <body id="page-top">
@@ -52,14 +52,14 @@
             <div style="margin:auto">
                 <div id="explan-box" class="text-center">
                     <!-- game 질문 -->
-                    술에 더 잘어울리는 안주는?
+                    '<%-data.exp %>' <!-- 술에 더 잘어울리는 안주는? <%= data.exp %> -->
                 </div>
                 <div id="play-box">
                     <button class="question-box box" style=" border:0.5rem solid #e74c3c; float:left; border-radius: 0 0 0 0.5rem">
-                        치킨 + 맥주
+                        '<%-data.qa %>' <!-- 치킨 + 맥주 <%= data.qa %>-->
                     </button>
                     <button class="question-box box" style="border:0.5rem solid #3498db; float:right; border-radius: 0 0 0.5rem 0">
-                        모둠전 + 막걸리
+                        '<%-data.qb %>' <!-- 모둠전 + 막걸리  <%= data.qb %> -->
                     </button>
                 </div>
             </div>
