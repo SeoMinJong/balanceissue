@@ -33,7 +33,7 @@ router.post('/api/get_gm_data/', (req, res) => {
     
     var gm_type = post.select_type;
     var gm_19_type = post.select_19;
-
+    console.log('gm_type, gm_19_type :', gm_type, gm_19_type)
     // console.log('gm_type, gm_19_type :',gm_type, gm_19_type)
 
     if (gm_19_type){
@@ -66,7 +66,7 @@ router.post('/api/get_gm_data/', (req, res) => {
             qb = data.QUESTION_B;
             exp = data.GM_EXPLAIN;
 
-            console.log('question :',qa, qb, exp)
+            console.log('질문', exp, 'question :',qa, ' vs ', qb)
 
             res.json({ index:randomresult.IDX , qa:qa, qb:qb, exp:exp });
          });
@@ -87,9 +87,9 @@ router.get('/play/:Index',function(req,res){
     //     }
     // });
     console.log('req.query :', req.query)
-    var dirPath = path.join(__dirname, '../views/play.html');
+    let dirPath = path.join(__dirname, '../views/play.html');
 
-    var data = {qa : req.query.qa, qb : req.query.qb, exp : req.query.exp}
+    let data = {qa : req.query.qa, qb : req.query.qb, exp : req.query.exp}
     console.log('data :', data)
     res.render(dirPath, {data:data});
 })
