@@ -66,12 +66,4 @@ document.getElementById("play-btn").addEventListener("click", function() {
             select_19: select_19
         })
     })
-    .then((response) => response.json())
-    .then(data => {
-        console.log('/game/play/' + data.index)
-
-        
-        // 서버로부터 받은 데이터를 처리하는 코드
-        window.location.href = `/game/play/${data.index}?qa=${data.qa}&qb=${data.qb}&exp=${data.exp}`; // json값으로 변경해서 넘기기 body
-    });
 });
