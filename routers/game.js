@@ -1,8 +1,9 @@
+import sessionStorage from 'node-sessionstorage';
 import express from 'express';
 import path from 'path';
 
 import client from '../config/mysqldb_connecte.js';
-import { get_gm_data } from '../services/game.js'
+import { get_gm_data, get_gm_index } from '../services/game.js'
 
 
 const router = express.Router();
@@ -15,23 +16,20 @@ router.get('/', (req, res) => {
     res.render(dirPath);
 })
 
-router.post('/play/:Index',function(req,res){
-    console.log('req.query :', req.query)
+router.get('/play/:index', async function(req,res){
+    let gm_data = await get_gm_data(req.params.index, client);
     let dirPath = path.join(__dirname, './views/play.hbs');
 
-    let data = {qa : req.query.qa, qb : req.query.qb, exp : req.query.exp}
-    console.log('data :', data)
-    res.render(dirPath, {data:data});
+    res.render(dirPath, {data:gm_data.dataResult, comment:gm_data.commentResults});
 })
 
 
 // api
 router.post('/api/get_gm_data/', async (req, res) => {
-    console.log('api get_gm_data start')
-    console.log(req.body)
     const post = req.body;
-    const gm_data = await get_gm_data(post, client)
-    res.json(gm_data)
+    const gm_index = await get_gm_index(post, client);
+    
+    res.send({gm_index});
 })
 
 

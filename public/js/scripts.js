@@ -52,10 +52,7 @@ document.getElementById("19-btn").addEventListener("click", function() {
     }
 });
 
-
-// play-btn에 대한 tag 조건에 따른 난수 추출 및 난수에 해당하는 play 페이지
 document.getElementById("play-btn").addEventListener("click", function() {
-    // 사용자가 'PLAY!' 버튼을 누르면 실행되는 함수
     fetch('/game/api/get_gm_data/', {
         method: 'POST',
         headers: {
@@ -65,5 +62,9 @@ document.getElementById("play-btn").addEventListener("click", function() {
             select_type: select_type,
             select_19: select_19
         })
-    })
+    }).then(res => res.json())
+    .then((post) => {
+        console.log('routing url :',`/game/play/${post.gm_index}`)
+        window.location.href = `/game/play/${post.gm_index}`;
+    });
 });
