@@ -1,18 +1,26 @@
-import { engine } from 'express-handlebars';
+import handlebars from 'express-handlebars';
 import compression from  'compression'; 
 import bodyParser from 'body-parser';
 import express from  'express';
 import path from 'path';
 import fs from 'fs';
 
+import {lengthOfList, dateString} from './utils/handlebars-helpers.js';
 import gameRouter from './routers/game.js'
 
 const app = express()
 const port = 3000
 
 
-app.engine('hbs', engine());
-
+app.engine("hbs", handlebars.create({
+    extname: '.hbs',
+    defaultLayout: 'main',
+    helpers: {
+        lengthOfList,
+        dateString,
+    }
+}).engine
+);
 const __dirname = path.resolve();
 
 app.use(express.static('public'));

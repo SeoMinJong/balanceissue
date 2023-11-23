@@ -11094,9 +11094,9 @@ html {
 }
 
 .comment {
-  padding-left: 11%;
-  padding-right: 11%;
-  padding-top: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 1%;
 }
 
 .comment-pass {
@@ -11114,4 +11114,20 @@ html {
   border-left: 0.5rem solid #95a5a6;
   border-right: 0.5rem solid #95a5a6;
   border-radius: 0.5rem 0.5rem 0 0; */
+}
+
+
+.area-reply .box-content .text {
+  margin: 0 100px 9px 0;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #777;
+  word-break: break-all;
+  position: relative;
+	border: 1px solid #ececec;
+  border-radius: 1.4em;
+  padding: 1em;
+	border-right-color: #f0f0f0;
+  box-shadow: 2px 5px 8px 0px #e7e794;
+  background-color: white;
 }
