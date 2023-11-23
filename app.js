@@ -13,6 +13,9 @@ const port = 3000
 
 app.engine('hbs', engine());
 
+const __dirname = path.resolve();
+
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(compression())
