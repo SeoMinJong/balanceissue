@@ -10974,7 +10974,6 @@ html {
 }
 
 .masthead {
-  display: flex;
   padding-top: calc(5rem + 74px);
   padding-bottom: 5rem;
 }
@@ -11045,7 +11044,6 @@ html {
   padding-top: 2rem;
   padding-bottom: 2rem;  
   height: 8rem;
-  transform : translateY(0%);
   background-color: #2C3E50;
   color: #fffffe;
 }
@@ -11072,9 +11070,6 @@ html {
   padding-bottom: 8rem;
 }
 
-.div {
-  display: inline-block;
-}
 
 .play-box {
   text-align:center;
@@ -11084,13 +11079,37 @@ html {
   margin-right: auto;
   margin-top: 5%;
   margin-bottom: 0%;
+  display: flex; /* 추가 */
+  justify-content: center; /* 수정 */
 }
 
 .question-box {
+  position: relative;
   width:30rem; 
   height:20rem;
   font-size: 1.2rem;
   font-weight: bold;
+  display: table
+}
+
+.question-text {
+  z-index: 1;
+}
+.score-box{
+  background:#7f7f7f;
+  background:rgba(255,255,255,0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  display: flex; /* 추가 */
+  justify-content: center; /* 추가 */
+  align-items: center; /* 추가 */
+  z-index: 2;
+  font-size: 4rem;
 }
 
 .comment {
@@ -11110,10 +11129,6 @@ html {
   padding: 1rem;
   font-size: 1.2rem;
   font-weight: bold;
-  /* border-top: 0.5rem solid #95a5a6;
-  border-left: 0.5rem solid #95a5a6;
-  border-right: 0.5rem solid #95a5a6;
-  border-radius: 0.5rem 0.5rem 0 0; */
 }
 
 

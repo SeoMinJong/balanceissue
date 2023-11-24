@@ -23,16 +23,24 @@ export async function get_gm_index(data, client) {
 
 export async function get_gm_data(index, client){
     const query = util.promisify(client.query).bind(client);
-    var data_query = `SELECT QUESTION_A, QUESTION_B, GM_EXPLAIN FROM GM WHERE IDX = ${index}`;
+    let data_query = `SELECT IDX, QUESTION_A, QUESTION_B, GM_EXPLAIN FROM GM WHERE IDX = ${index}`;
 
     const dataResults = await query(data_query)
 
 
     const dataResult = dataResults[0];
 
-    var comment_query = `SELECT NICKNAME, COMMENT, CREATED_AT FROM GM_COMMENT WHERE IDX = ${index}`;
+    let comment_query = `SELECT NICKNAME, COMMENT, CREATED_AT FROM GM_COMMENT WHERE IDX = ${index}`;
     const commentResults = await query(comment_query)
 
+    let score_query = `SELECT SCORE_A,SCORE_B FROM GM_SCORE WHERE IDX=${index}`
+    const scoreResults = await query(score_query)
+    
+    const scoreResult = scoreResults[0];
 
-    return { dataResult:dataResult, commentResults:commentResults };
+    return { dataResult:dataResult, commentResults:commentResults, scoreResult:scoreResult};
+}
+
+export async function get_gm_score(post, client){
+    const query = util.promisify(client.query).bind(client);
 }

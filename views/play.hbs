@@ -1,22 +1,22 @@
-
-{{#with data}}
-<div class="masthead text-white text-center" style="padding-top: 10rem; padding-bottom: 6rem; display:inline-flex; width:100%; text-align: center;">
-    <div style="margin:auto">
-        <div id="explan-box" class="text-center">
-            <!-- game 질문 -->
-            {{GM_EXPLAIN}} <!-- 술에 더 잘어울리는 안주는? <%= data.exp %> -->
-        </div>
-        <div id="play-box">
-            <button class="question-box box" style=" border:0.5rem solid #e74c3c; float:left; border-radius: 0 0 0 0.5rem">
-                {{QUESTION_A}} <!-- 치킨 + 맥주 <%= data.qa %>-->
-            </button>
-            <button class="question-box box" style="border:0.5rem solid #3498db; float:right; border-radius: 0 0 0.5rem 0">
-                {{QUESTION_B}} <!-- 모둠전 + 막걸리  <%= data.qb %> -->
-            </button>
-        </div>
+<section class="masthead text-white text-center" style="padding-top: 10rem; padding-bottom: 6rem; width:100%; text-align: center; overflow: auto">
+    <div id="index" type="hidden">{{data.IDX}}</div>
+    <div id="explan-box" class="text-center">
+        {{data.GM_EXPLAIN}}
     </div>
-</div>
-{{/with}}
+    <div id="play-box" style="display: inline-flex;">
+        <button class="question-box box"
+            style=" border:0.5rem solid #e74c3c; border-radius: 0 0 0 0.5rem" onclick="gm_score">
+            <div class="question-text">{{data.QUESTION_A}}</div>
+            <div class="score-box">{{score.SCORE_A}}%</div>
+        </button>
+        <button class="question-box box"
+            style="border:0.5rem solid #3498db; border-radius: 0 0 0.5rem 0" onclick="gm_score">
+            <div class="question-text">{{data.QUESTION_B}}</div>
+            <div class="score-box">{{score.SCORE_B}}%</div>
+        </button>
+    </div>
+</section>
+
 <!-- Comment Section-->
 <section class="page-section bg-primary" id="Comment">
     <div class="comment">
@@ -27,29 +27,29 @@
                 <input type="text" autocomplete="off" name="comment_body" class="comment-body form-control px-3"
                     maxlength="140" id="comment_body" placeholder="댓글을 입력해주세요.">
                 <div id="submit_parent" class="justify-content-between py-2" style="display: flex;">
-                    <input type="password" class="form-control not_login_password comment-pass px-3" name="password"
-                        maxlength="20" placeholder="비밀번호">
+                    <input type="password" class="form-control not_login_password comment-pass px-3" name="password" maxlength="20" placeholder="비밀번호">
                     <input type="button" name="submit" class="btn btn-dark comment_button" value="등록">
                 </div>
                 <input type="text" name="parent_id" value="0" style="display: none">
             </form>
             <div id="comment_count">댓글: {{lengthOfList comments}}개</div>
             <div id="comment_container">
-            {{#each comments}}
-            <div class="container mt-3">
-                <div class="d-flex justify-content-center row">
-                    <div class="d-flex flex-column comment-section p-0">
-                        <div class="bg-white p-2 rounded-3">
-                            <div class="d-flex flex-row user-info position-relative">
-                                <span class="d-block font-weight-bold name">{{NICKNAME}}</span><span class="date text-black-50 position-absolute top-0 end-0">{{dateString CREATED_AT}}</span>
+                {{#each comments}}
+                <div class="container mt-3">
+                    <div class="d-flex justify-content-center row">
+                        <div class="d-flex flex-column comment-section p-0">
+                            <div class="bg-white p-2 rounded-3">
+                                <div class="d-flex flex-row user-info position-relative">
+                                    <span class="d-block font-weight-bold name">{{NICKNAME}}</span><span class="date text-black-50 position-absolute top-0 end-0">{{dateString CREATED_AT}}</span>
+                                </div>
+                                <p class="m-0">{{COMMENT}}</p>
                             </div>
-                            <p class="m-0">{{COMMENT}}</p>
                         </div>
                     </div>
                 </div>
-            </div>
-            {{/each}}
+                {{/each}}
             </div>
         </div>
     </div>
 </section>
+<script src="/js/script_play.js"></script>

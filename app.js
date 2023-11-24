@@ -21,7 +21,7 @@ app.engine("hbs", handlebars.create({
     }
 }).engine
 );
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
