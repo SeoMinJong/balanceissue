@@ -4,10 +4,10 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const client =  createConnection({
-    host     : process.env.host,
-    user     : process.env.user,
-    password : process.env.password,
-    database : process.env.database
+    host     : process.env.DEV_HOST,
+    user     : process.env.DEV_USER,
+    password : process.env.DEV_PASSWORD,
+    database : process.env.DEV_DATABASE
 });
 
 client.connect(function(err) {

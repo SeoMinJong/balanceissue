@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<title>SELF STUDY</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="format-detection" content="telephone=no">
+<link href="https://fonts.googleapis.com/css?family=Lato:400,900&display=swap" rel="stylesheet">
+<style>
+*{padding:0;margin:0}
+body{background-color:#181726}
+.skill_list li{list-style:none;float:left;display:table;width:200px;height:200px;margin:10px;font-family:"Lato",sans-serif;background-color:rgba(237,96,98,0.15);border-top:1px solid #ed6062;border-bottom:1px solid #ed6062}
+.skill_list div{display:table-cell;vertical-align:middle}
+.skill{display:block;margin-bottom:20px;font-size:20px;font-weight:400;color:#ed6062;text-align:center}
+.skill_num{font-size:50px;font-weight:900;color:#fff}
+.skill_num span{display:inline-block}
+.skill_num .num{text-align:right;width:53%;padding-right:2%}
+.skill_num .per{width:45%}
+</style>
+</head>
+<body>
+<button onclick="rolling()">click rolling</button>
+<ul class="skill_list">
+    <li>
+        <div>
+            <span class="skill">HTML/CSS</span>
+            <span class="skill_num"><span class="num" data-level="95"></span><span class="per">%</span></span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="skill">JAVASCRIPT</span>
+            <span class="skill_num"><span class="num" data-level="80"></span><span class="per">%</span></span>
+        </div>
+    </li>
+    <li>
+        <div>
+            <span class="skill">ETC</span>
+            <span class="skill_num"><span class="num" data-level="98"></span><span class="per">%</span></span>
+        </div>
+    </li>
+</ul>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+</body>
+<script>
+    function rolling(){
+        var elements = document.querySelectorAll(".skill_list .num");
+        elements.forEach(function($selector, index){
+            var getDataName = $selector.getAttribute("data-level");
+            // 인터벌 텍스트
+            var intervalId = randomNumberInterval($selector, 60);
+            // 클리어 인터벌
+            randomNumberClearInterval($selector, intervalId, getDataName, 1000);
+        });
+    
+        // 랜덤 숫자 생성
+        function randomNumber(max, min){
+            // 10에서 99사이의 숫자 반환을 위해 최대값과 최소값을 지정
+            var randomNumber = Math.floor(Math.random() * (max-min) + min);
+            return randomNumber;
+        }
+    
+        // 랜덤 숫자 인터벌
+        function randomNumberInterval(selector, speed){
+            var intervalId = setInterval(function(){
+                var _randomNumber = randomNumber(99, 10);
+                selector.textContent = _randomNumber;
+            }, speed);
+            return intervalId;
+        }
+    
+        // 인터벌 중지 및 해당 텍스트 고정
+        function randomNumberClearInterval(selector, clearObject, dataName, clearTime){
+            setTimeout(function(){
+                clearInterval(clearObject);
+                selector.textContent = dataName;
+            }, clearTime);
+        }
+    }
+</script>
+</html>

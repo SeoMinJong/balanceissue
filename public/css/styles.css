@@ -11105,7 +11105,7 @@ html {
   height: 100%;
   text-align: center;
   vertical-align: middle;
-  display: flex; /* 추가 */
+  display: none; /* 추가 */
   justify-content: center; /* 추가 */
   align-items: center; /* 추가 */
   z-index: 2;
