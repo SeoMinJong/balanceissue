@@ -1,14 +1,22 @@
-function gm_score(element){
+function gm_score(){
+    var questionBoxes = document.querySelectorAll('.question-box');
+    questionBoxes.forEach(function(questionBoxe){
+        questionBoxe.style.pointerEvents = 'none';
+    });
     var scoreBoxes = document.querySelectorAll('.score-box');
     scoreBoxes.forEach(function(scoreBox) {
         scoreBox.style.display = 'flex';
     });
     rolling_num();
+    var nextbox = document.getElementById('next-box');
+    nextbox.style.display = 'flex';
 }
 
 function next_gm(){
     
 }
+
+
 function rolling_num(){
     var elements = document.querySelectorAll(".score-box .num");
     elements.forEach(function($selector, index){
