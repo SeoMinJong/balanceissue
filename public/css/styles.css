@@ -11146,3 +11146,8 @@ html {
   box-shadow: 2px 5px 8px 0px #e7e794;
   background-color: white;
 }
+
+.start-type{
+  background-color: green;
+  color: #000;
+}

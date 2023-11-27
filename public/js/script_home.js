@@ -68,3 +68,22 @@ document.getElementById("play-btn").addEventListener("click", function() {
         window.location.href = `/game/play/${post.gm_index}`;
     });
 });
+
+window.onload=function(){
+    if(select_type==1){
+        document.getElementById("friend-btn").style.backgroundColor = "green";
+        document.getElementById("friend-btn").style.color = "black";
+    }
+    else if(select_type==2){
+        document.getElementById("family-btn").style.backgroundColor = "yellow";
+        document.getElementById("family-btn").style.color = "black";
+    }
+    else{
+        document.getElementById("lover-btn").style.backgroundColor = "Aqua";
+        document.getElementById("lover-btn").style.color = "black";
+    }
+    if(select_19){
+        document.getElementById("19-btn").innerText = "19 ON"
+        document.getElementById("19-btn").style.backgroundColor = "red";
+    }
+}
