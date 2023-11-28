@@ -1,9 +1,8 @@
 import handlebars from 'express-handlebars';
+import cookieParser from 'cookie-parser';
 import compression from  'compression'; 
 import bodyParser from 'body-parser';
 import express from  'express';
-import path from 'path';
-import fs from 'fs';
 
 import {lengthOfList, dateString} from './utils/handlebars-helpers.js';
 import gameRouter from './routers/game.js'
@@ -21,7 +20,6 @@ app.engine("hbs", handlebars.create({
     }
 }).engine
 );
-// const __dirname = path.resolve();
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));

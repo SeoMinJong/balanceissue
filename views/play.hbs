@@ -4,16 +4,14 @@
         {{data.GM_EXPLAIN}}
     </div>
     <div id="play-box" style="display: inline-flex; position: relative;">
-        <a id="next-box" style="display: none;">눌러서 다음 질문으로</a>
+        <a id="next-box">눌러서 다음 질문으로</a>
         <button class="question-box box gm_answer1" style=" border:0.5rem solid #e74c3c; border-radius: 0 0 0 0.5rem" onclick="gm_score()">
             <div class="question-text">{{data.QUESTION_A}}</div>
-            <div class="score-box" style="display: none;"><div class="num" data-level="{{score.SCORE_A}}"></div><div class="per">%</div>
-            {{!-- <div class="score-box">{{score.SCORE_A}}%</div> --}}
+            <div class="score-box"><div class="num" data-level="{{score.SCORE_A}}"></div><div class="per">%</div>
         </button>
         <button class="question-box box gm_answer2" style="border:0.5rem solid #3498db; border-radius: 0 0 0.5rem 0" onclick="gm_score()">
             <div class="question-text">{{data.QUESTION_B}}</div>
-            <div class="score-box" style="display: none;"><div class="num" data-level="{{score.SCORE_B}}"></div><div class="per">%</div>
-            {{!-- <div class="score-box">{{score.SCORE_B}}%</div> --}}
+            <div class="score-box"><div class="num" data-level="{{score.SCORE_B}}"></div><div class="per">%</div>
         </button>
     </div>
 </section>

@@ -14,11 +14,7 @@ export async function get_gm_index(data, client) {
     let randomIndex = Math.floor(Math.random() * idxResults.length);
     let randomresult = idxResults[randomIndex];
 
-    // var data_query = `SELECT QUESTION_A, QUESTION_B, GM_EXPLAIN FROM GM WHERE IDX = ${randomresult.IDX}`;
-
-    // commment test query
     return 1
-
 } 
 
 export async function get_gm_data(index, client){
@@ -39,8 +35,4 @@ export async function get_gm_data(index, client){
     const scoreResult = scoreResults[0];
 
     return { dataResult:dataResult, commentResults:commentResults, scoreResult:scoreResult};
-}
-
-export async function get_gm_score(post, client){
-    const query = util.promisify(client.query).bind(client);
 }
