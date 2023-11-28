@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 
 import client from '../config/mysqldb_connecte.js';
-import { get_gm_data, get_gm_index, get_gm_score } from '../services/game.js'
+import { get_gm_data, get_gm_index } from '../services/game.js'
 
 
 const router = express.Router();
@@ -22,8 +22,10 @@ router.get('/play/:index', async function(req,res){
 
 
 // api
-router.post('/api/get_gm_data/', async (req, res) => {
+router.post('/api/next_play/', async (req, res) => {
     const post = req.body;
+    res.cookie('gm_type', post.select_type);
+    res.cookie('gm_19_type', post.select_19);
     const gm_index = await get_gm_index(post, client);
     
     res.send({gm_index});

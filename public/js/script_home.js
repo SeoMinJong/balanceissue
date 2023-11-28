@@ -53,7 +53,7 @@ document.getElementById("19-btn").addEventListener("click", function() {
 });
 
 document.getElementById("play-btn").addEventListener("click", function() {
-    fetch('/game/api/get_gm_data/', {
+    fetch('/game/api/next_play/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
