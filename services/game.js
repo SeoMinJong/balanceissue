@@ -1,5 +1,8 @@
 import util from 'util';
 
+export async function cookie_setting(res, req){
+    
+}
 
 export async function get_gm_index(data, client) {
     const query = util.promisify(client.query).bind(client);

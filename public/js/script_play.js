@@ -13,7 +13,7 @@ function gm_score(){
 }
 
 function next_gm(){
-    
+    // 태그에 맞는 다른 index를 
 }
 
 

@@ -53,7 +53,9 @@ document.getElementById("19-btn").addEventListener("click", function() {
 });
 
 document.getElementById("play-btn").addEventListener("click", function() {
-    fetch('/game/api/next_play/', {
+    console.log('select_type :', select_type)
+    console.log('select_19 :', select_19)
+    fetch('/game/api/play/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -61,12 +63,13 @@ document.getElementById("play-btn").addEventListener("click", function() {
         body: JSON.stringify({
             select_type: select_type,
             select_19: select_19
-        })
-    }).then(res => res.json())
-    .then((post) => {
-        console.log('routing url :',`/game/play/${post.gm_index}`)
-        window.location.href = `/game/play/${post.gm_index}`;
-    });
+        }),
+        redirect: 'follow'
+    }).then(response => {
+        if (response.redirected) {
+          window.location.href = response.url;
+        }
+      });
 });
 
 window.onload=function(){
