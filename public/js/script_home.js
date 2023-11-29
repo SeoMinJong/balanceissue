@@ -9,7 +9,6 @@ document.getElementById("friend-btn").addEventListener("click", function() {
     document.getElementById("family-btn").style.color = "yellow";
     document.getElementById("lover-btn").style.backgroundColor = "";
     document.getElementById("lover-btn").style.color = "Aqua";
-    console.log("select_type, select_19 :",select_type,select_19)
 });
 
 document.getElementById("family-btn").addEventListener("click", function() {
@@ -20,7 +19,6 @@ document.getElementById("family-btn").addEventListener("click", function() {
     document.getElementById("family-btn").style.color = "black";
     document.getElementById("lover-btn").style.backgroundColor = "";
     document.getElementById("lover-btn").style.color = "Aqua";
-    console.log("select_type, select_19 :",select_type,select_19)
 });
 
 document.getElementById("lover-btn").addEventListener("click", function() {
@@ -31,7 +29,6 @@ document.getElementById("lover-btn").addEventListener("click", function() {
     document.getElementById("family-btn").style.color = "yellow";
     document.getElementById("lover-btn").style.backgroundColor = "Aqua";
     document.getElementById("lover-btn").style.color = "black";
-    console.log("select_type, select_19 :",select_type,select_19)
 });
 
 
@@ -42,27 +39,23 @@ document.getElementById("19-btn").addEventListener("click", function() {
         select_19 = 1
         document.getElementById("19-btn").innerText = "19 ON"
         document.getElementById("19-btn").style.backgroundColor = "red";
-        console.log("select_type, select_19 :",select_type,select_19)
     }
     else{
         select_19 = 0
         document.getElementById("19-btn").innerText = "19 OFF"
         document.getElementById("19-btn").style.backgroundColor = "";
-        console.log("select_type, select_19 :",select_type,select_19)
     }
 });
 
 document.getElementById("play-btn").addEventListener("click", function() {
-    console.log('select_type :', select_type)
-    console.log('select_19 :', select_19)
     fetch('/game/api/play/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            select_type: select_type,
-            select_19: select_19
+            gm_type: select_type,
+            gm_19_type: select_19
         }),
         redirect: 'follow'
     }).then(response => {

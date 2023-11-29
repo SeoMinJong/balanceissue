@@ -23,22 +23,16 @@ router.get('/play/:index', async function(req,res){
 
 // api
 router.post('/api/play/', async (req, res)=>{
-    console.log('start home paly api')
     const post = req.body;
-    res.cookie('gm_type', post.select_type);
-    res.cookie('gm_19_type', post.select_19);
+    res.cookie('gm_type', post.gm_type);
+    res.cookie('gm_19_type', post.gm_19_type);
     const gm_index = await get_gm_index(post, client);
-    console.log(`/game/play/${gm_index} 접속`);
-    const play_url = `/game/play/${gm_index}`
     
-    return res.redirect(play_url);
+    return res.redirect(`/game/play/${gm_index}`);
 })
 
-
 router.post('/api/next_play/', async (req, res) => {
-    const post = req.body;
-    console.log('setting cookie :', req.headers.cookie);
-    const gm_index = await get_gm_index(post, client);
+    const gm_index = await get_gm_index(req.cookies, client);
 
     res.redirect(`/game/play/${gm_index}`);
 })
