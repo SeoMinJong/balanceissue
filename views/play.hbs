@@ -4,7 +4,7 @@
         {{data.GM_EXPLAIN}}
     </div>
     <div id="play-box" style="display: inline-flex; position: relative;">
-        <a id="next-box">눌러서 다음 질문으로</a>
+        <a id="next-box" onclick="next_gm()">눌러서 다음 질문으로</a>
         <button class="question-box box gm_answer1" style=" border:0.5rem solid #e74c3c; border-radius: 0 0 0 0.5rem" onclick="gm_score()">
             <div class="question-text">{{data.QUESTION_A}}</div>
             <div class="score-box"><div class="num" data-level="{{score.SCORE_A}}"></div><div class="per">%</div>

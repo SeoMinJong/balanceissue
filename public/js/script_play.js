@@ -13,7 +13,17 @@ function gm_score(){
 }
 
 function next_gm(){
-    // 태그에 맞는 다른 index를 
+    fetch('/game/api/next_play/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow'
+    }).then(response => {
+        if (response.redirected) {
+          window.location.href = response.url;
+        }
+      });
 }
 
 
