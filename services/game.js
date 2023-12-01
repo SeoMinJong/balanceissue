@@ -15,7 +15,7 @@ export async function get_gm_index(data, client) {
     let randomresult = idxResults[randomIndex];
 
     return 1
-} 
+}
 
 export async function get_gm_data(index, client){
     const query = util.promisify(client.query).bind(client);
@@ -33,4 +33,11 @@ export async function get_gm_data(index, client){
     const scoreResult = scoreResults[0];
 
     return { dataResult:dataResult, commentResults:commentResults, scoreResult:scoreResult};
+}
+
+export async function comment_insert(post, client){
+    const query = util.promisify(client.query).bind(client);
+    let comment_query = `INSERT INTO gm_comment (IDX, COMMENT, NICKNAME, PASSWORD) values(${post.parent_id}, '${post.comment}', '${post.nickname}', '${post.password}');`;
+
+    await query(comment_query);
 }

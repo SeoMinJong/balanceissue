@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 
 import client from '../config/mysqldb_connecte.js';
-import { get_gm_data, get_gm_index } from '../services/game.js'
+import { get_gm_data, get_gm_index, comment_insert } from '../services/game.js'
 
 
 const router = express.Router();
@@ -37,5 +37,10 @@ router.post('/api/next_play/', async (req, res) => {
     res.redirect(`/game/play/${gm_index}`);
 })
 
+router.post('/api/comment_insert/', async (req, res)=>{
+    await comment_insert(req.body, client);
+    console.log('reload page :',`/game/play/${req.body.parent_id}`)
+    res.redirect(`/game/play/${req.body.parent_id}`);
+})
 
 export default router;
