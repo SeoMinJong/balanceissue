@@ -39,7 +39,6 @@ router.post('/api/next_play/', async (req, res) => {
 
 router.post('/api/comment_insert/', async (req, res)=>{
     await comment_insert(req.body, client);
-    console.log('reload page :',`/game/play/${req.body.parent_id}`)
     res.redirect(`/game/play/${req.body.parent_id}`);
 })
 
