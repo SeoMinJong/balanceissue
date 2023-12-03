@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 
 import client from '../config/mysqldb_connecte.js';
-import { get_gm_data, get_gm_index, comment_insert } from '../services/game.js'
+import { get_gm_data, get_gm_index, comment_insert, comment_delete } from '../services/game.js'
 
 
 const router = express.Router();
@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
     res.render(dirPath);
 })
 
-router.get('/play/:index', async function(req,res){
-    let gm_data = await get_gm_data(req.params.index, client);
+router.get('/play/:idx', async function(req,res){
+    let gm_data = await get_gm_data(req.params.idx, client);
     let dirPath = path.join(__dirname, './views/play.hbs'); 
 
     res.render(dirPath, {data:gm_data.dataResult, comments:gm_data.commentResults, score:gm_data.scoreResult});
@@ -40,6 +40,19 @@ router.post('/api/next_play/', async (req, res) => {
 router.post('/api/comment_insert/', async (req, res)=>{
     await comment_insert(req.body, client);
     res.redirect(`/game/play/${req.body.parent_id}`);
+})
+
+router.delete('/api/comment/:idx', async (req, res)=>{
+    const post = req.body;
+    const isDelete = await comment_delete(post, client);
+    
+    if(isDelete){
+        console.log('delete success');
+        return res.send(200);
+    }else{
+        console.log('delete false');
+        return res.send(202);
+    }
 })
 
 export default router;

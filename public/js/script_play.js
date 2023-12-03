@@ -61,3 +61,24 @@ function rolling_num(){
         }, clearTime);
     }
 }
+
+function delete_comment(element) {
+    var password = prompt("비밀번호를 입력해주세요.");
+    var commentId = element.getAttribute('comment_id');
+    fetch('/game/api/comment/' + commentId, { 
+        method: 'DELETE',
+        body:JSON.stringify({
+            commentId: commentId,
+            password: password
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+    }}).then(response => {
+        console.log(response.status);
+        if (response.status === 200) {
+            window.location.reload();
+        } else {
+            alert('댓글 삭제에 실패했습니다.');
+        }
+    });
+}
