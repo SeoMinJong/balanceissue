@@ -1,5 +1,20 @@
 import util from 'util';
+import * as bcrypt from 'bcrypt'
 
+
+async function encoding(password){
+    if (!password || typeof password !== 'string') {
+        throw new HttpException('Invalid password', HttpStatus.BAD_REQUEST);
+    }
+    
+    const encryptedPassword = bcrypt.hashSync(password, 10);
+
+    return encryptedPassword
+}
+
+async function decoding(data){
+
+}
 
 export async function get_gm_index(data, client) {
     const query = util.promisify(client.query).bind(client);
@@ -37,7 +52,9 @@ export async function get_gm_data(index, client){
 
 export async function comment_insert(post, client){
     const query = util.promisify(client.query).bind(client);
-    let comment_query = `INSERT INTO gm_comment (IDX, COMMENT, NICKNAME, PASSWORD) values(${post.parent_id}, '${post.comment}', '${post.nickname}', '${post.password}');`;
+
+    const encryptedPassword = await encoding(post.password)
+    let comment_query = `INSERT INTO gm_comment (IDX, COMMENT, NICKNAME, HASHED_PASSWORD) values(${post.parent_id}, '${post.comment}', '${post.nickname}', '${encryptedPassword}');`;
 
     await query(comment_query);
 }
