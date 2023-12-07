@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 
 import client from '../config/mysqldb_connecte.js';
-import { get_gm_data, get_gm_index, comment_insert, comment_delete } from '../services/game.js'
+import { set_cookie, get_gm_data, get_gm_index, comment_insert, comment_delete } from '../services/game.js'
 
 
 const router = express.Router();
@@ -14,6 +14,14 @@ router.get('/', (req, res) => {
 })
 
 router.get('/play/:idx', async function(req,res){
+    let prev_index = String(req.cookies.prev_index);
+    const idx = String(req.params.idx);
+
+    if (!prev_index.includes(idx)) {
+        prev_index += `${idx}`;
+        res.cookie('prev_index', prev_index);
+    }
+
     let gm_data = await get_gm_data(req.params.idx, client);
     let dirPath = path.join(__dirname, './views/play.hbs'); 
 
@@ -24,8 +32,8 @@ router.get('/play/:idx', async function(req,res){
 // api
 router.post('/api/play/', async (req, res)=>{
     const post = req.body;
-    res.cookie('gm_type', post.gm_type);
-    res.cookie('gm_19_type', post.gm_19_type);
+    set_cookie(req, res, post);
+    post['prev_index'] = ''
     const gm_index = await get_gm_index(post, client);
     
     return res.redirect(`/game/play/${gm_index}`);

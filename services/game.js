@@ -12,20 +12,38 @@ async function encoding(password){
     return encryptedPassword
 }
 
+export async function set_cookie(req, res, post){
+    res.cookie('gm_type', post.gm_type);
+    res.cookie('gm_19_type', post.gm_19_type);
+    res.cookie('prev_index', '')
+}
+
 export async function get_gm_index(data, client) {
     const query = util.promisify(client.query).bind(client);
+    console.log(data.prev_index);
     const gm_type = data.gm_type;
     const gm_19_type = data.gm_19_type;
+    const prev_index = String(data.prev_index);
+    var s_prev_index = prev_index.split('');
+    let select_query;
 
-    const select_query = gm_19_type 
-        ? `SELECT IDX FROM GM_TYPE WHERE TYPE IN (${gm_type}, 4) GROUP BY IDX HAVING COUNT(DISTINCT TYPE) = 2;`
-        : `SELECT IDX FROM GM_TYPE WHERE TYPE = ${gm_type}`;
+    console.log('gm_19_type :' ,gm_19_type)
+    if (prev_index==''){
+        select_query = gm_19_type != 0 
+            ? `SELECT IDX FROM GM_TYPE WHERE TYPE IN (${gm_type}, 4) GROUP BY IDX HAVING COUNT(DISTINCT TYPE) = 2;`
+            : `SELECT IDX FROM GM_TYPE WHERE TYPE = ${gm_type};`;
+    }else{
+        select_query = gm_19_type != 0 
+            ? `SELECT IDX FROM GM_TYPE WHERE TYPE IN (${gm_type}, 4) AND IDX NOT IN (${s_prev_index}) GROUP BY IDX HAVING COUNT(DISTINCT TYPE) = 2;`
+            : `SELECT IDX FROM GM_TYPE WHERE TYPE = ${gm_type} AND IDX NOT IN (${s_prev_index});`;
+    }
 
+    console.log('select_query :',select_query)
     const idxResults = await query(select_query);
     const randomIndex = Math.floor(Math.random() * idxResults.length);
     const randomresult = idxResults[randomIndex];
 
-    return 1
+    return randomresult.IDX
 }
 
 export async function get_gm_data(index, client){
@@ -62,7 +80,6 @@ export async function comment_delete(post, client){
     const delete_query = `DELETE FROM balance.gm_comment WHERE IDX=${post.commentId};`;
 
     const selectResults = await query(select_query);
-    console.log(selectResults)
     
     const isMatch = await bcrypt.compare(post.password, selectResults[0].HASHED_PASSWORD);
 
