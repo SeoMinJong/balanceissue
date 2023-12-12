@@ -51,10 +51,8 @@ export async function get_gm_data(index, client){
 }
 
 export async function insert_gm_log(post, client){
-    console.log('post :',post)
     const query = util.promisify(client.query).bind(client);
     const {result_type, index} = post
-    console.log('result_type, index :',result_type, index)
     let insert_query = `INSERT INTO gm_log (GM_IDX, Sl_TYPE) VALUES(${index}, ${result_type})`;
 
     await query(insert_query);
