@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 
 import client from '../config/mysqldb_connecte.js';
-import { set_cookie, get_gm_data, get_gm_index, comment_insert, comment_delete } from '../services/game.js'
+import { set_cookie, get_gm_data, get_gm_index, insert_gm_log, insert_comment, delete_comment } from '../services/game.js'
 
 
 const router = express.Router();
@@ -39,26 +39,35 @@ router.post('/api/play/', async (req, res)=>{
     return res.redirect(`/game/play/${gm_index}`);
 })
 
-router.post('/api/next_play/', async (req, res) => {
+router.post('/api/next-play/', async (req, res) => {
     const gm_index = await get_gm_index(req.cookies, client);
 
     res.redirect(`/game/play/${gm_index}`);
 })
 
+router.post('/api/gm-log/', async (req, res)=>{
+    // 클릭한 요소 넘겨받기 (0 or 1)(a or b)
+    const post = req.body;
+
+    // service log inesrt function
+    await insert_gm_log(post, client);
+    // service score renewal
+    
+})
+
+// comment api
 router.post('/api/comment_insert/', async (req, res)=>{
-    await comment_insert(req.body, client);
+    await insert_comment(req.body, client);
     res.redirect(`/game/play/${req.body.parent_id}`);
 })
 
 router.delete('/api/comment/:idx', async (req, res)=>{
     const post = req.body;
-    const isDelete = await comment_delete(post, client);
+    const isDelete = await delete_comment(post, client);
     
     if(isDelete){
-        console.log('delete success');
         return res.send(200);
     }else{
-        console.log('delete false');
         return res.send(202);
     }
 })

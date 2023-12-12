@@ -1,33 +1,20 @@
 import util from 'util';
 import * as bcrypt from 'bcrypt'
 
-
-async function encoding(password){
-    const salt = bcrypt.genSaltSync(10);
-    if (!password || typeof password !== 'string') {
-        throw new HttpException('Invalid password', HttpStatus.BAD_REQUEST);
-    }
-    const encryptedPassword = bcrypt.hashSync(password, 10);
-
-    return encryptedPassword
-}
-
-export async function set_cookie(req, res, post){
-    res.cookie('gm_type', post.gm_type);
-    res.cookie('gm_19_type', post.gm_19_type);
-    res.cookie('prev_index', '')
-}
+/* game section function
+get_gm_index - Get game random index
+get_gm_data - Get game data
+insert_gm_log - Record the answer selected by the user
+*/
 
 export async function get_gm_index(data, client) {
     const query = util.promisify(client.query).bind(client);
-    console.log(data.prev_index);
     const gm_type = data.gm_type;
     const gm_19_type = data.gm_19_type;
     const prev_index = String(data.prev_index);
     var s_prev_index = prev_index.split('');
     let select_query;
 
-    console.log('gm_19_type :' ,gm_19_type)
     if (prev_index==''){
         select_query = gm_19_type != 0 
             ? `SELECT IDX FROM GM_TYPE WHERE TYPE IN (${gm_type}, 4) GROUP BY IDX HAVING COUNT(DISTINCT TYPE) = 2;`
@@ -38,7 +25,6 @@ export async function get_gm_index(data, client) {
             : `SELECT IDX FROM GM_TYPE WHERE TYPE = ${gm_type} AND IDX NOT IN (${s_prev_index});`;
     }
 
-    console.log('select_query :',select_query)
     const idxResults = await query(select_query);
     const randomIndex = Math.floor(Math.random() * idxResults.length);
     const randomresult = idxResults[randomIndex];
@@ -64,7 +50,21 @@ export async function get_gm_data(index, client){
     return { dataResult:dataResult, commentResults:commentResults, scoreResult:scoreResult};
 }
 
-export async function comment_insert(post, client){
+export async function insert_gm_log(post, client){
+    console.log('post :',post)
+    const query = util.promisify(client.query).bind(client);
+    const {result_type, index} = post
+    console.log('result_type, index :',result_type, index)
+    let insert_query = `INSERT INTO gm_log (GM_IDX, Sl_TYPE) VALUES(${index}, ${result_type})`;
+
+    await query(insert_query);
+}
+
+/* comment section function
+comment_insert - Insert comment
+comment_delete - Delete comment
+*/
+export async function insert_comment(post, client){
     const query = util.promisify(client.query).bind(client);
 
     const encryptedPassword = await encoding(post.password);
@@ -73,7 +73,7 @@ export async function comment_insert(post, client){
     await query(comment_query);
 }
 
-export async function comment_delete(post, client){
+export async function delete_comment(post, client){
     const query = util.promisify(client.query).bind(client);
     
     const select_query = `SELECT * FROM balance.gm_comment WHERE IDX=${post.commentId};`;
@@ -91,4 +91,26 @@ export async function comment_delete(post, client){
     await query(delete_query);
     
     return true
+}
+
+
+
+/* util section function
+encoding - Password encoding
+set_cookie - To connect home -> play cookie setting
+*/
+async function encoding(password){
+    const salt = bcrypt.genSaltSync(10);
+    if (!password || typeof password !== 'string') {
+        throw new HttpException('Invalid password', HttpStatus.BAD_REQUEST);
+    }
+    const encryptedPassword = bcrypt.hashSync(password, 10);
+
+    return encryptedPassword
+}
+
+export async function set_cookie(req, res, post){
+    res.cookie('gm_type', post.gm_type);
+    res.cookie('gm_19_type', post.gm_19_type);
+    res.cookie('prev_index', '')
 }

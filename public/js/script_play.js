@@ -1,4 +1,4 @@
-function gm_score(){
+async function gm_score(){
     var questionBoxes = document.querySelectorAll('.question-box');
     questionBoxes.forEach(function(questionBoxe){
         questionBoxe.style.pointerEvents = 'none';
@@ -12,8 +12,9 @@ function gm_score(){
     nextbox.style.display = 'flex';
 }
 
+
 function next_gm(){
-    fetch('/game/api/next_play/', {
+    fetch('/game/api/next-play/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -24,6 +25,28 @@ function next_gm(){
           window.location.href = response.url;
         }
       });
+}
+
+document.getElementById('gm_answer1').addEventListener('click', function() {
+    var index = document.getElementById('index').innerHTML;
+    send_gm_log(0, index);
+});
+document.getElementById('gm_answer2').addEventListener('click', function() {
+    var index = document.getElementById('index').innerHTML;
+    send_gm_log(1, index);
+});
+
+function send_gm_log(result_type, index){
+    fetch('/game/api/gm-log/', {
+        method:'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },        
+        body:JSON.stringify({
+            result_type: result_type,
+            index: index
+        }),
+    })
 }
 
 
