@@ -2,9 +2,11 @@ import handlebars from 'express-handlebars';
 import cookieParser from 'cookie-parser';
 import compression from  'compression'; 
 import bodyParser from 'body-parser';
+import schedule from 'node-schedule';
 import express from  'express';
 
 import {lengthOfList, dateString} from './utils/handlebars-helpers.js';
+import {score_renewal} from './utils/schedule_service.js';
 import gameRouter from './routers/game.js'
 
 const app = express()
@@ -41,4 +43,5 @@ app.use('/game', gameRouter);
 
 app.listen(port, function(){
     console.log(`Example app listening on port ${port}`)
+    schedule.scheduleJob('* * * * * * ', score_renewal());
 })

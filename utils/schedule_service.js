@@ -1,12 +1,10 @@
 import util from 'util';
-import mysql from 'mysql';
-import deferred from 'deferred';
 
 
 import client from './config/mysqldb_connecte.js';
 
 
-async function score_renewal(client){
+export async function score_renewal(client){
     const query = util.promisify(client.query).bind(client);
     // gm_log 전체 불러오기
     const select_query = 'SELECT GM_IDX, SL_TYPE, COUNT(*) as COUNT FROM balance.gm_log GROUP BY GM_IDX, SL_TYPE ORDER BY GM_IDX, SL_TYPE;'
@@ -29,29 +27,12 @@ async function score_renewal(client){
         }
     }
     
-    // let queries = '';
-    // const update_query = 'UPDATE gm_score SET SCORE_A = ?, SCORE_B = ? WHERE GM_IDX = ?;';
+    // 점수 보정 알고리즘 적용
 
+
+    // 생성된 점수 gm_score에 업데이트 해주기
     score_list.forEach(row => {
         let update_query = `UPDATE gm_score SET SCORE_A = ${row.SCORE_A}, SCORE_B = ${row.SCORE_B} WHERE IDX = ${row.GM_IDX}`;
         query(update_query);
     });
-
-    // 생성된 점수 gm_score에 업데이트 해주기
 }
-
-async function test_case_insert(client, GM_IDX, SL_TYPE, count){
-    const query = util.promisify(client.query).bind(client);
-    
-    const insert_query = `INSERT INTO gm_log(GM_IDX, SL_TYPE) VALUES(${GM_IDX}, ${SL_TYPE})`
-
-    for (let i=0; i<count; i++){
-        query(insert_query)
-        console.log(`insert_query ${i} success`);
-    }
-}
-
-// test_case_insert(client, 4, 1, 84);
-
-const score_results = await score_renewal(client);
-console.log(score_results)
