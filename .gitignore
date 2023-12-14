@@ -1,2 +1,4 @@
 .env
+/uilts/score_correction.js
 /node_modules
+utils/score_correction.js
