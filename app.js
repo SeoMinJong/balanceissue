@@ -43,5 +43,5 @@ app.use('/game', gameRouter);
 
 app.listen(port, function(){
     console.log(`Example app listening on port ${port}`)
-    schedule.scheduleJob('* * * * * * ', score_renewal());
+    schedule.scheduleJob('* 1 * * * * ', score_renewal);
 })

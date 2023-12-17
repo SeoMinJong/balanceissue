@@ -1,8 +1,8 @@
 import util from 'util';
-import client from './config/mysqldb_connecte.js';
+import client from '../config/mysqldb_connecte.js';
 import{score_correction} from './score_correction.js'
 
-export async function score_renewal(client){
+export async function score_renewal(){
     const query = util.promisify(client.query).bind(client);
     
     const select_query = 'SELECT GM_IDX, SL_TYPE, COUNT(*) as COUNT FROM balance.gm_log GROUP BY GM_IDX, SL_TYPE ORDER BY GM_IDX, SL_TYPE;'
@@ -19,14 +19,14 @@ export async function score_renewal(client){
             let gm_idx = score_results[2*i].GM_IDX
             
             // 점수 보정 알고리즘 적용
-            corr_score_a, corr_score_b = await score_correction({score_a:score_a, score_b:score_b})
+            let corr_scores = await score_correction({score_a:score_a, score_b:score_b})
 
-            score_list.push({SCORE_A:corr_score_a, SCORE_B:corr_score_b, GM_IDX:gm_idx});
+            score_list.push({SCORE_A:corr_scores.SCORE_A, SCORE_B:corr_scores.SCORE_B, GM_IDX:gm_idx});
         }
     }
 
     // 생성된 점수 gm_score에 업데이트 해주기
-    correction_score_list.forEach(row => {
+    score_list.forEach(row => {
         let update_query = `UPDATE gm_score SET SCORE_A = ${row.SCORE_A}, SCORE_B = ${row.SCORE_B} WHERE IDX = ${row.GM_IDX}`;
         query(update_query);
     });
