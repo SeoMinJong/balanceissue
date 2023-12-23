@@ -11041,6 +11041,12 @@ html {
 }
 
 .footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 10px;
   padding-top: 2rem;
   padding-bottom: 2rem;  
   height: 8rem;
@@ -11167,4 +11173,8 @@ html {
 
 .score-box{
   display: none;
+}
+
+.navbar-create{
+  text-decoration: none;
 }

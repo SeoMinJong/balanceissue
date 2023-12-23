@@ -28,6 +28,11 @@ router.get('/play/:idx', async function(req,res){
     res.render(dirPath, {data:gm_data.dataResult, comments:gm_data.commentResults, score:gm_data.scoreResult});
 })
 
+router.get('/create', (req, res) => {
+    var dirPath = path.join(__dirname, './views/create.hbs'); 
+    res.render(dirPath);
+})
+
 
 // api
 router.post('/api/play/', async (req, res)=>{
@@ -52,7 +57,6 @@ router.post('/api/gm-log/', async (req, res)=>{
     // service log inesrt function
     await insert_gm_log(post, client);
     // service score renewal
-    
 })
 
 // comment api

@@ -64,8 +64,13 @@ comment_delete - Delete comment
 */
 export async function insert_comment(post, client){
     const query = util.promisify(client.query).bind(client);
+    let encryptedPassword
+    if(post.password==''){
+        encryptedPassword = ''
+    }else{
+        encryptedPassword = await encoding(post.password);
+    }
 
-    const encryptedPassword = await encoding(post.password);
     const comment_query = `INSERT INTO gm_comment (GM_IDX, COMMENT, NICKNAME, HASHED_PASSWORD) values(${post.parent_id}, '${post.comment}', '${post.nickname}', '${encryptedPassword}');`;
 
     await query(comment_query);
@@ -79,8 +84,14 @@ export async function delete_comment(post, client){
 
     const selectResults = await query(select_query);
     
-    const isMatch = await bcrypt.compare(post.password, selectResults[0].HASHED_PASSWORD);
+    if(selectResults[0].HASHED_PASSWORD==post.password){
+        console.log('blank password cut')
+        await query(delete_query);
 
+        return true;
+    }
+
+    const isMatch = await bcrypt.compare(post.password, selectResults[0].HASHED_PASSWORD);
     if(!isMatch) {
         console.log('Passwords do not match');
         return false;
