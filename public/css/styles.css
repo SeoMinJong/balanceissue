@@ -11076,6 +11076,14 @@ html {
   padding-bottom: 8rem;
 }
 
+#body-section{
+  padding-bottom: 8rem;
+}
+
+#home-section{
+  padding-top: 18rem; 
+  padding-bottom: 18.5rem;
+}
 
 .play-box {
   text-align:center;
