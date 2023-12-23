@@ -85,7 +85,6 @@ export async function delete_comment(post, client){
     const selectResults = await query(select_query);
     
     if(selectResults[0].HASHED_PASSWORD==post.password){
-        console.log('blank password cut')
         await query(delete_query);
 
         return true;
@@ -93,7 +92,6 @@ export async function delete_comment(post, client){
 
     const isMatch = await bcrypt.compare(post.password, selectResults[0].HASHED_PASSWORD);
     if(!isMatch) {
-        console.log('Passwords do not match');
         return false;
     }
 
