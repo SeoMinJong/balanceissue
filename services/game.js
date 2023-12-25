@@ -5,6 +5,7 @@ import * as bcrypt from 'bcrypt'
 get_gm_index - Get game random index
 get_gm_data - Get game data
 insert_gm_log - Record the answer selected by the user
+insert_gm - Insert user create game (disable:0)
 */
 
 export async function get_gm_index(data, client) {
@@ -48,6 +49,31 @@ export async function get_gm_data(index, client){
     const scoreResult = scoreResults[0];
 
     return { dataResult:dataResult, commentResults:commentResults, scoreResult:scoreResult};
+}
+
+export async function insert_gm(post, client){
+    const query = util.promisify(client.query).bind(client);
+    if(post.nickname==""){
+        post.nickname = "익명"
+    }
+    const gm_query = `INSERT INTO gm (NICKNAME, GM_EXPLAIN, QUESTION_A, QUESTION_B, DISABLE) values('${post.nickname}', '${post.explain}', '${post.question1}', '${post.question2}', 0);`;
+
+    const result = await query(gm_query);
+
+    let insertId = result.insertId
+
+    if(post.friend=='1'){
+        query(`INSERT INTO gm_type (IDX, TYPE) VALUES(${insertId}, 1)`);
+    }
+    if(post.family=='1'){
+        query(`INSERT INTO gm_type (IDX, TYPE) VALUES(${insertId}, 2)`);
+    }
+    if(post.lover=='1'){
+        query(`INSERT INTO gm_type (IDX, TYPE) VALUES(${insertId}, 3)`);
+    }   
+    if(post.adult=='1'){
+        query(`INSERT INTO gm_type (IDX, TYPE) VALUES(${insertId}, 4)`);
+    }
 }
 
 export async function insert_gm_log(post, client){

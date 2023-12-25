@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 
 import client from '../config/mysqldb_connecte.js';
-import { set_cookie, get_gm_data, get_gm_index, insert_gm_log, insert_comment, delete_comment } from '../services/game.js'
+import { set_cookie, get_gm_data, get_gm_index, insert_gm_log, insert_comment, delete_comment, insert_gm } from '../services/game.js'
 
 
 const router = express.Router();
@@ -34,7 +34,14 @@ router.get('/create', (req, res) => {
 })
 
 
-// api
+/*api
+post /api/play/ - Home page play game
+post /api/next-play/ - Play page next game
+post /api/gm-log/ - Record user's selected answer
+post /api/comment/ - Insert comment
+delete /api/comment/ - Delete comment
+post /api/gm - Insert comment disable:0
+*/
 router.post('/api/play/', async (req, res)=>{
     const post = req.body;
     set_cookie(req, res, post);
@@ -50,17 +57,20 @@ router.post('/api/next-play/', async (req, res) => {
     res.redirect(`/game/play/${gm_index}`);
 })
 
+router.post('/api/gm/', async (req, res)=>{
+    await insert_gm(req.body, client);
+    res.send("<script>alert('감사합니다! 관리자 검토 후 문제 승인 예정입니다!');location.href='/game/create/';</script>");
+})
+
 router.post('/api/gm-log/', async (req, res)=>{
     // 클릭한 요소 넘겨받기 (0 or 1)(a or b)
     const post = req.body;
 
-    // service log inesrt function
     await insert_gm_log(post, client);
-    // service score renewal
 })
 
 // comment api
-router.post('/api/comment_insert/', async (req, res)=>{
+router.post('/api/comment/', async (req, res)=>{
     await insert_comment(req.body, client);
     res.redirect(`/game/play/${req.body.parent_id}`);
 })

@@ -1,12 +1,24 @@
 <section class="masthead text-center bg-primary" style="padding-top: 14.5rem; padding-bottom: 14.5rem; text-align: center; overflow: auto">
-    <form>
-        <input id="explan-input" type="textarea" class="text-center" maxlength="50" placeholder="질문에 대한 가정을 적어주세요 (50자 이내)">
+    <form method="POST" action="/game/api/gm/">
+        <div>
+            <button type="button" id="friend-btn" type="checkbox" class="btn btn-outline-success home-button home-button m-3">친구</button>
+            <input type="hidden" id="friend_input" name="friend" value="">
+            <button type="button" id="family-btn" type="checkbox" class="btn btn-outline-warning home-button home-button m-3">가족</button>
+            <input type="hidden" id="family_input" name="family" value="">
+            <button type="button" id="lover-btn" type="checkbox" class="btn btn-outline-info home-button home-button m-3">연인</button>
+            <input type="hidden" id="lover_input" name="lover" value="">
+            <button type="button" id="19-btn" type="button" class="btn btn-outline-danger home-button m-3" style="color: aliceblue;">19 OFF</button>
+            <input type="hidden" id="19_input" name="adult" value="">
+            <input id="nickname" name="nickname" type="text" class="text-center" style="border:0.2rem solid #101214;; border-radius: 0 0 0.5rem 0.5rem; font-size: 1.2rem;" maxlength="50" placeholder="익명">
+
+        </div>
+        <input id="explan-input" name="explain" type="textarea" class="text-center" maxlength="50" placeholder="질문에 대한 가정을 적어주세요 (50자 이내)">
         <div id="play-box" class="bg-primary">
             <div id="gm_answer1" class="question-box box" style="border:0.5rem solid #e74c3c; border-radius: 0 0 0 0.5rem" onclick="gm_score()">
-                <textarea id="gm1_input" contenteditable="true" class="text-center create-input" maxlength="50" placeholder="여기에 입력해주세요"></textarea>
+                <textarea id="gm1_input" name="question1" contenteditable="true" class="text-center create-input" maxlength="50" placeholder="여기에 입력해주세요"></textarea>
             </div>
-            <div id="gm_answer2     " class="question-box box" style="border:0.5rem solid #3498db; border-radius: 0 0 0.5rem 0" onclick="gm_score()">
-                <textarea id="gm2_input" contenteditable="true" class="text-center create-input" maxlength="50" placeholder="여기에 입력해주세요"></textarea>
+            <div id="gm_answer2" class="question-box box" style="border:0.5rem solid #3498db; border-radius: 0 0 0.5rem 0" onclick="gm_score()">
+                <textarea id="gm2_input" name="question2" contenteditable="true" class="text-center create-input" maxlength="50" placeholder="여기에 입력해주세요"></textarea>
             </div>
         </div>
             <input class="w-btn w-btn-blue" type="submit" value="만들기">
