@@ -11101,6 +11101,7 @@ html {
 
 .question-box {
   position: relative;
+  background-color: #fffffe;
   width:30rem; 
   height:20rem;
   font-size: 1.2rem;
@@ -11137,15 +11138,16 @@ html {
   margin-right: 50%;
 }
 
-#explan-box {
-  background-color: #1ABC9C;
+#explain-box {
+  background-color: #fffffe;
   color: #000000;
-  margin-left: 10%;
-  margin-right: 10%;
   padding: 1rem;
   font-size: 1.2rem;
   font-weight: bold;
-  border: 0.3rem solid #101214; border-radius: 0 0 0.5rem 0
+  border: 0.3rem solid #101214; border-radius: 0 0 0.5rem 0;
+  width: 1300px; /* 너비를 자동으로 설정 */
+  margin: auto;
+  margin-top: 60px;
 }
 
 .area-reply .box-content .text {
@@ -11204,9 +11206,6 @@ html {
   display: none;
 }
 
-.input-text{
-}
-
 #explan-input{
   background-color: #fffffe;
   color: #000000;
@@ -11236,4 +11235,9 @@ html {
   font-weight: 600;
   transition: 0.25s;
   margin-top: 3rem;
+}
+
+.mx-8{
+  margin-left: 400px;
+  margin-right: 400px;
 }
