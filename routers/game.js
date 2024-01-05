@@ -33,7 +33,11 @@ router.get('/create', (req, res) => {
     res.render(dirPath);
 })
 
-
+router.get('/report/:idx', (req, res) => {
+    var dirPath = path.join(__dirname, './views/report.hbs'); 
+    const idx = req.params.idx;
+    res.render(dirPath, {idx: idx});
+})
 /*api
 post /api/play/ - Home page play game
 post /api/next-play/ - Play page next game
