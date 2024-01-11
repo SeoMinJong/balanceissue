@@ -33,10 +33,11 @@ router.get('/create', (req, res) => {
     res.render(dirPath);
 })
 
-router.get('/report/:idx', (req, res) => {
-    var dirPath = path.join(__dirname, './views/report.hbs'); 
+router.get('/report/:idx', async (req, res) => {
     const idx = req.params.idx;
-    res.render(dirPath, {idx: idx});
+    let gm_data = await get_gm_data(idx, client);
+    var dirPath = path.join(__dirname, './views/report.hbs'); 
+    res.render(dirPath, {idx: idx, data:gm_data.dataResult});
 })
 /*api
 post /api/play/ - Home page play game

@@ -10961,7 +10961,7 @@ html {
   border-left: 0;
   border-right: 0;
   border-top: 0;
-  border-radius: 0;
+  border-radius: 10 px;
   border-width: 1px;
 }
 .form-floating input.form-control:focus,
