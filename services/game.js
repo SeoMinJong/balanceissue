@@ -89,15 +89,14 @@ export async function insert_report(post, client){
     const query = util.promisify(client.query).bind(client);
     const {GM_IDX, NICKNAME, TYPE, REPORT} = post
     let insert_query = `INSERT INTO gm_report (GM_IDX, NICKNAME, REPORT_TYPE, REPORT) VALUES(${GM_IDX}, '${NICKNAME}', ${TYPE}, '${REPORT}')`;
-    console.log('insert_query setting')
 
     try {
         await query(insert_query)
-        return 1;
+        return true;
     }catch{
         console.log('report insert false')
         console.log(err)
-        return 0;
+        return false;
     }
 }
 

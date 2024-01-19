@@ -44,6 +44,7 @@ router.get('/reportSuccess', (req, res) => {
     var dirPath = path.join(__dirname, './views/reportSuccess.hbs'); 
     res.render(dirPath);
 })
+
 /*api
 post /api/play/ - Home page play game
 post /api/next-play/ - Play page next game
@@ -51,6 +52,7 @@ post /api/gm-log/ - Record user's selected answer
 post /api/comment/ - Insert comment
 delete /api/comment/ - Delete comment
 post /api/gm - Insert comment disable:0
+post /api.report/ - Insert gm report
 */
 router.post('/api/play/', async (req, res)=>{
     const post = req.body;
@@ -79,7 +81,6 @@ router.post('/api/gm-log/', async (req, res)=>{
     await insert_gm_log(post, client);
 })
 
-// comment api
 router.post('/api/comment/', async (req, res)=>{
     await insert_comment(req.body, client);
     res.redirect(`/game/play/${req.body.parent_id}`);
@@ -96,11 +97,9 @@ router.delete('/api/comment/:idx', async (req, res)=>{
     }
 })
 
-// report api
 router.post('/api/report/', async (req, res)=>{
     const post = req.body;
-    const resultSuccess = await insert_report(req.body, client);
-    console.log('resultSuccess :',reportSuccess)
+    const resultSuccess = await insert_report(post, client);
 
     if(resultSuccess){
         return res.send(200);
