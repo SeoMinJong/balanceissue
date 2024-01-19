@@ -8,11 +8,11 @@ insert_gm_log - Record the answer selected by the user
 insert_gm - Insert user create game (disable:0)
 */
 
-export async function get_gm_index(data, client) {
+export async function get_gm_index(post, client) {
     const query = util.promisify(client.query).bind(client);
-    const gm_type = data.gm_type;
-    const gm_19_type = data.gm_19_type;
-    const prev_index = String(data.prev_index);
+    const gm_type = post.gm_type;
+    const gm_19_type = post.gm_19_type;
+    const prev_index = String(post.prev_index);
     var s_prev_index = prev_index.split('');
     let select_query;
 
@@ -71,7 +71,7 @@ export async function insert_gm(post, client){
     if(post.lover=='1'){
         query(`INSERT INTO gm_type (IDX, TYPE) VALUES(${insertId}, 3)`);
     }   
-    if(post.adult=='1'){
+    if(post.adult=='1'){    
         query(`INSERT INTO gm_type (IDX, TYPE) VALUES(${insertId}, 4)`);
     }
 }
@@ -82,6 +82,25 @@ export async function insert_gm_log(post, client){
     let insert_query = `INSERT INTO gm_log (GM_IDX, Sl_TYPE) VALUES(${index}, ${result_type})`;
 
     await query(insert_query);
+}
+
+export async function insert_report(post, client){
+    console.log('start insert report')
+    const query = util.promisify(client.query).bind(client);
+    const {GM_IDX, NICKNAME, TYPE, REPORT} = post
+    let insert_query = `INSERT INTO gm_report (GM_IDX, NICKNAME, REPORT_TYPE, REPORT) VALUES(${GM_IDX}, '${NICKNAME}', ${TYPE}, '${REPORT}')`;
+
+    await query(insert_query, function(err, result){
+        if (err){
+            console.log('report insert false')
+            console.log(err)
+            return 0
+        }
+        else{
+            console.log('report insert success')
+            return 1
+        }
+    });
 }
 
 /* comment section function

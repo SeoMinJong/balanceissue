@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 
 import client from '../config/mysqldb_connecte.js';
-import { set_cookie, get_gm_data, get_gm_index, insert_gm_log, insert_comment, delete_comment, insert_gm } from '../services/game.js'
+import { set_cookie, get_gm_data, get_gm_index, insert_gm_log, insert_comment, delete_comment, insert_gm, insert_report } from '../services/game.js'
 
 
 const router = express.Router();
@@ -38,6 +38,11 @@ router.get('/report/:idx', async (req, res) => {
     let gm_data = await get_gm_data(idx, client);
     var dirPath = path.join(__dirname, './views/report.hbs'); 
     res.render(dirPath, {idx: idx, data:gm_data.dataResult});
+})
+
+router.get('/reportSuccess', (req, res) => {
+    var dirPath = path.join(__dirname, './views/reportSuccess.hbs'); 
+    res.render(dirPath);
 })
 /*api
 post /api/play/ - Home page play game
@@ -87,6 +92,20 @@ router.delete('/api/comment/:idx', async (req, res)=>{
     if(isDelete){
         return res.send(200);
     }else{
+        return res.send(202);
+    }
+})
+
+// report api
+router.post('/api/report/', async (req, res)=>{
+    const post = req.body;
+    const resultSuccess = await insert_report(req.body, client);
+    console.log('resultSuccess :',reportSuccess)
+
+    if(resultSuccess){
+        return res.send(200);
+    }
+    else{
         return res.send(202);
     }
 })
