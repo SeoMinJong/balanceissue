@@ -6,6 +6,7 @@ get_gm_index - Get game random index
 get_gm_data - Get game data
 insert_gm_log - Record the answer selected by the user
 insert_gm - Insert user create game (disable:0)
+insert_report - Insert game report
 */
 
 export async function get_gm_index(post, client) {
@@ -85,22 +86,19 @@ export async function insert_gm_log(post, client){
 }
 
 export async function insert_report(post, client){
-    console.log('start insert report')
     const query = util.promisify(client.query).bind(client);
     const {GM_IDX, NICKNAME, TYPE, REPORT} = post
     let insert_query = `INSERT INTO gm_report (GM_IDX, NICKNAME, REPORT_TYPE, REPORT) VALUES(${GM_IDX}, '${NICKNAME}', ${TYPE}, '${REPORT}')`;
+    console.log('insert_query setting')
 
-    await query(insert_query, function(err, result){
-        if (err){
-            console.log('report insert false')
-            console.log(err)
-            return 0
-        }
-        else{
-            console.log('report insert success')
-            return 1
-        }
-    });
+    try {
+        await query(insert_query)
+        return 1;
+    }catch{
+        console.log('report insert false')
+        console.log(err)
+        return 0;
+    }
 }
 
 /* comment section function
