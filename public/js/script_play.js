@@ -97,7 +97,6 @@ function delete_comment(element) {
         headers: {
             'Content-Type': 'application/json'
     }}).then(response => {
-        console.log(response.status);
         if (response.status === 200) {
             window.location.reload();
         } else {

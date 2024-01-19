@@ -18,7 +18,6 @@ function report_send(){
         })
     }).then(response => {
             if (response.status === 200) {
-                console.log('status 200 clear')
                 location.href = 'http://localhost:3000/game/reportSuccess/'
             } else {
                 alert('신고에 실패했습니다. 다시 시도해주세요.');

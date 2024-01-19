@@ -94,7 +94,6 @@ export async function insert_report(post, client){
         await query(insert_query)
         return true;
     }catch{
-        console.log('report insert false')
         console.log(err)
         return false;
     }
